@@ -9,6 +9,11 @@ from Index.models import *
 #TODO: main_page = form isian mutaba'ah harian
 def main_page(request):
     mutaaba3ah_name = request.GET.get('mutaaba3ah_name', MUTAABA3AH_NAME)
+    template_values = {}
+    return render(request, 'mutaaba3ah/form.html', template_values)
+
+def sample_method(request):
+    mutaaba3ah_name = request.GET.get('mutaaba3ah_name', MUTAABA3AH_NAME)
 
     # Ancestor Queries, as shown here, are strongly consistent with the High
     # Replication Datastore. Queries that span entity groups are eventually

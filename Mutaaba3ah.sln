@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "Mutaaba3ah", "DjangoGAE\Mutaaba3ah.pyproj", "{888FD37E-EE59-4692-9F61-D64CBFF4AF5E}"
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "Mutaaba3ah", "Mutaaba3ah\Mutaaba3ah.pyproj", "{888FD37E-EE59-4692-9F61-D64CBFF4AF5E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

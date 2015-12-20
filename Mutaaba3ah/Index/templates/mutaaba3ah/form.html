@@ -1,0 +1,56 @@
+{% extends "mutaaba3ah/base.html" %}
+
+{% block content %}
+
+  <div class="row" style="margin-top: 10px">
+    <h4>Form mutaba'ah harian</h4>
+  </div>
+  <form method="post">
+
+    <div class="row">
+      <div class="four columns">
+        <label for="nama">Nama</label>
+        <select name="nama" id="nama">
+          <option value="">--Select Name--</option>
+          <option value="dummy">Dummy User</option>
+        </select>
+      </div>
+      <div class="four columns">
+        <label for="tanggal">Tanggal</label>
+        <input type="text" name="tanggal" id="tanggal" placeholder="tanggal" readonly="readonly">
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="four columns">
+        <label for="dhuha">Dhuha</label>
+        <input type="number" name="dhuha" id="dhuha" placeholder="raka'at">
+      </div>
+      <div class="four columns">
+        <label for="ql">Qiyamul Lail</label>
+        <input type="number" name="ql" id="ql" placeholder="raka'at">
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="five columns">
+        <label for="tilawah">Tilawah</label>
+        <input type="number" name="tilawah" id="tilawah" placeholder="halaman awal">
+        <input type="number" name="tilawah-to" id="tilawah-to" placeholder="halaman akhir">
+        <input type="number" name="count" id="count" placeholder="total" readonly="readonly">
+      </div>
+    </div>
+
+    <div class="row">
+      <label for="shaum">Shaum</label>
+      <div>
+        <input id="shaum-yes" type="radio" name="shaum" value="1"/><label class="radio-label">Ya</label>
+        <input id="shaum-no" type="radio" name="shaum" value="0"/><label class="radio-label">Tidak</label>
+      </div>
+    </div>
+    <div class="row">
+      <input type="submit" class="button-primary" value="Save">
+    </div>
+  </form>
+
+{% endblock %}

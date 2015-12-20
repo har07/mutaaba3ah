@@ -31,11 +31,18 @@
   <ItemGroup>
     <Content Include="app.yaml" />
     <Content Include="favicon.ico" />
-    <Content Include="Index\templates\guestbook\main_page.html" />
+    <Content Include="Index\templates\mutaaba3ah\base.html" />
+    <Content Include="Index\templates\mutaaba3ah\form.html" />
+    <Content Include="Index\templates\mutaaba3ah\main_page.html" />
     <Content Include="index.yaml" />
+    <Content Include="Index\templates\mutaaba3ah\report.html" />
+    <Content Include="Index\templates\mutaaba3ah\sample.html" />
+    <Content Include="Index\templates\mutaaba3ah\search.html" />
     <Content Include="readme_debug.txt" />
     <Content Include="requirements.txt" />
     <Content Include="static\css\main.css" />
+    <Content Include="static\css\normalize.css" />
+    <Content Include="static\css\skeleton.css" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DjangoCore\settings.py" />
@@ -61,7 +68,7 @@
     <Folder Include="DjangoCore\" />
     <Folder Include="Index\" />
     <Folder Include="Index\templates\" />
-    <Folder Include="Index\templates\guestbook\" />
+    <Folder Include="Index\templates\mutaaba3ah\" />
     <Folder Include="static\" />
     <Folder Include="static\css\" />
   </ItemGroup>

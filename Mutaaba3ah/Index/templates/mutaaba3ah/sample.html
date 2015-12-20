@@ -1,0 +1,68 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Mutaaba3ah</title>
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Mobile Specific Metas
+    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- FONT
+    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+    <link href='http://fonts.googleapis.com/css?family=Alfa+Slab+One' rel='stylesheet' type='text/css'>
+
+    <!-- CSS
+    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <link rel="stylesheet" href="/css/normalize.css">
+    <link rel="stylesheet" href="/css/skeleton.css">
+    <link rel="stylesheet" href="/css/main.css">
+    <script type="text/javascript">
+      function selectText() {
+          var text = document.getElementById('rekap_harian');
+          var selection = window.getSelection();
+          var range = document.createRange();
+          range.selectNodeContents(text);
+          selection.removeAllRanges();
+          selection.addRange(range);
+
+          //ga usah support IE dulu dah
+          // if ($.browser.msie) {
+          //   var range = document.body.createTextRange();
+          //   range.moveToElementText(text);
+          //   range.select();
+          // } else {
+          //   var selection = window.getSelection();
+          //   var range = document.createRange();
+          //   range.selectNodeContents(text);
+          //   selection.removeAllRanges();
+          //   selection.addRange(range);
+          // }
+        }
+    </script>
+  </head>
+
+  <body>
+  <header class="header">
+    <div class="logo">
+      <h1>Portfolio</h1>
+    </div>
+  </header>
+  <form class="container clearfix">
+    <input class="nav-menu" id="all" type="radio" name="filter" checked="checked"/>
+    <label for="all">All</label>
+
+    <input class="nav-menu" id="illustrations" type="radio" name="filter"/>
+    <label for="illustrations">Illustrations</label>
+
+    <input class="nav-menu" id="posters" type="radio" name="filter"/>
+    <label for="posters">Posters</label>
+
+    <section class="portofolio">
+
+    </section>
+  </form>
+  </body>
+</html>
