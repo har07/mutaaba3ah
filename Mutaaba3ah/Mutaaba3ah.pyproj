@@ -32,6 +32,7 @@
     <Content Include="app.yaml" />
     <Content Include="favicon.ico" />
     <Content Include="Index\templates\mutaaba3ah\base.html" />
+    <Content Include="Index\templates\mutaaba3ah\form_backup.html" />
     <Content Include="Index\templates\mutaaba3ah\form.html" />
     <Content Include="Index\templates\mutaaba3ah\main_page.html" />
     <Content Include="index.yaml" />
@@ -50,10 +51,16 @@
     <Compile Include="DjangoCore\settings.py" />
     <Compile Include="DjangoCore\urls.py" />
     <Compile Include="DjangoCore\__init__.py" />
+    <Compile Include="Index\mutaaba3ah_forms.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Index\form_helper.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Index\models.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Index\mutaaba3ah_modelform.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Index\urls.py">

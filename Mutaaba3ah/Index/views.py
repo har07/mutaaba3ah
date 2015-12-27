@@ -6,12 +6,20 @@ import urllib
 import json
 
 from Index.models import *
+from Index.mutaaba3ah_forms import *
 from Index import form_helper as fh
 
 def main_page(request):
-    mutaaba3ah_name = request.GET.get('mutaaba3ah_name', MUTAABA3AH_NAME)
-    template_values = fh.get_new_laporan_model(request)
-    return render(request, 'mutaaba3ah/form.html', template_values)
+    #mutaaba3ah_name = request.GET.get('mutaaba3ah_name', MUTAABA3AH_NAME)
+    #template_values = fh.get_new_laporan_model(request)
+    #return render(request, 'mutaaba3ah/form.html', template_values)
+    if request.method == 'POST':
+        form = LaporanForm(request.POST)
+        if form.is_valid():
+            return HttpResponseRedirect('/thanks/')
+    else:
+        form = LaporanForm()
+    return render(request, 'mutaaba3ah/form.html', {'form': form})
 
 def save_report(request):
     if request.method == "POST":
