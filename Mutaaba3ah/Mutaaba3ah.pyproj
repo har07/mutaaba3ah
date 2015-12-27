@@ -43,11 +43,16 @@
     <Content Include="static\css\main.css" />
     <Content Include="static\css\normalize.css" />
     <Content Include="static\css\skeleton.css" />
+    <Content Include="static\script\helper.js" />
+    <Content Include="static\script\main.js" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DjangoCore\settings.py" />
     <Compile Include="DjangoCore\urls.py" />
     <Compile Include="DjangoCore\__init__.py" />
+    <Compile Include="Index\form_helper.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Index\models.py">
       <SubType>Code</SubType>
     </Compile>
@@ -71,6 +76,7 @@
     <Folder Include="Index\templates\mutaaba3ah\" />
     <Folder Include="static\" />
     <Folder Include="static\css\" />
+    <Folder Include="static\script\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.Web.targets" />
   <!-- Specify pre- and post-build commands in the BeforeBuild and 

@@ -1,5 +1,5 @@
-application: new-project-template
-version: 1
+application: mutaaba3ah
+version: beta2
 runtime: python27
 api_version: 1
 threadsafe: yes
@@ -17,7 +17,7 @@ handlers:
 
 libraries:
 - name: django
-  version: 1.5
+  version: "latest"
   
   
 env_variables: 

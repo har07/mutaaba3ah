@@ -2,23 +2,33 @@
 
 {% block content %}
 
+<script src="/static/script/main.js"></script>
+
   <div class="row" style="margin-top: 10px">
     <h4>Form mutaba'ah harian</h4>
   </div>
-  <form method="post">
+  <form id="form_laporan" action="/save_report/" method="post">
+    {% csrf_token %}
 
     <div class="row">
       <div class="four columns">
         <label for="nama">Nama</label>
-        <select name="nama" id="nama">
-          <option value="">--Select Name--</option>
-          <option value="dummy">Dummy User</option>
-        </select>
+        <label name="nama" id="nama">{{laporan.user.nickname}}</label>
       </div>
       <div class="four columns">
         <label for="tanggal">Tanggal</label>
-        <input type="text" name="tanggal" id="tanggal" placeholder="tanggal" readonly="readonly">
+        <input type="text" name="tanggal" id="tanggal" placeholder="format YYYY-mm-dd" readonly="readonly">
+        <input type="hidden" name="tanggal_value" id="tanggal_value" value=""/>
       </div>
+    </div>
+
+    <div class="row">
+        <div class="five columns">
+            <label for="tilawah">Tilawah</label>
+            <input type="number" name="tilawah" id="tilawah" min="1" max="604" placeholder="halaman awal" value="{{laporan.tilawah_start}}">
+            <input type="number" name="tilawah_to" id="tilawah_to" min="1" max="604" placeholder="halaman akhir atau juz">
+            <input type="number" name="count" id="count" placeholder="total" readonly="readonly">
+        </div>
     </div>
 
     <div class="row">
@@ -33,15 +43,6 @@
     </div>
 
     <div class="row">
-      <div class="five columns">
-        <label for="tilawah">Tilawah</label>
-        <input type="number" name="tilawah" id="tilawah" placeholder="halaman awal">
-        <input type="number" name="tilawah-to" id="tilawah-to" placeholder="halaman akhir">
-        <input type="number" name="count" id="count" placeholder="total" readonly="readonly">
-      </div>
-    </div>
-
-    <div class="row">
       <label for="shaum">Shaum</label>
       <div>
         <input id="shaum-yes" type="radio" name="shaum" value="1"/><label class="radio-label">Ya</label>
@@ -49,8 +50,26 @@
       </div>
     </div>
     <div class="row">
-      <input type="submit" class="button-primary" value="Save">
+      <input type="submit" id="btnSave" disabled="disabled" class="button" value="Save">
+      <a class="button" id="btnLogin" href="{{url}}">{{url_linktext}}</a>
     </div>
+
+      <div hidden="hidden" id="div_dialog">
+          <div id="formInvalidDialog" title="Isian form tidak valid">
+              <p>Periksa kembali isian form Anda. Pastikan bahwa: <br>1. Tanggal sudah diisi <br>2. Minimal salah satu field selain tanggal sudah terisi</p>
+          </div>
+          <div id="formSucessDialog" title="Data telah tersimpan">
+              <p>Mutaba'ah tanggal {{saved_date}} telah berhasil tersimpan.</p>
+          </div>
+      </div>
+
+      <div hidden="hidden">
+          <input type="hidden" name="formData" id="formData" value=""/>
+          <input type="hidden" id="isSuccess" value="{{isSuccess}}"/>
+          <input type="hidden" id="isValid" value="false"/>
+          <input type="hidden" id="validationMessage" value=""/>
+          <input type="hidden" id="isLoggedin" value="{{isLoggedin}}" />
+      </div>
   </form>
 
 {% endblock %}

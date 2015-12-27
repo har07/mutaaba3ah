@@ -16,6 +16,9 @@ class Laporan(ndb.Model):
     user = ndb.UserProperty()
     created_date = ndb.DateTimeProperty(auto_now_add=True)
 
+    #tanggal
+    date = ndb.DateProperty()
+
     #tilawah
     tilawah_start = ndb.IntegerProperty()
     tilawah_end = ndb.IntegerProperty()
@@ -34,7 +37,7 @@ class Laporan(ndb.Model):
     raport = ndb.BooleanProperty()
 
     def compute_tilawah(self):
-        if tilawah_end < tilawah_start:
-            return (MAX_HAL_ALQURAN + 1 - tilawah_start) + tilawah_end
+        if self.tilawah_end < self.tilawah_start:
+            return (MAX_HAL_ALQURAN + 1 - self.tilawah_start) + self.tilawah_end
         
-        return tilawah_end - tilawah_start + 1
+        return self.tilawah_end - self.tilawah_start + 1

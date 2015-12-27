@@ -12,6 +12,31 @@ input.button-primary {
     margin-top: 10px;
 }
 
+/* override skeleton CSS: disable hover effect on disabled button */
+.button:hover:disabled,
+button:hover:disabled,
+input[type="submit"]:hover:disabled,
+input[type="reset"]:hover:disabled,
+input[type="button"]:hover:disabled,
+.button:focus:disabled,
+button:focus:disabled,
+input[type="submit"]:focus:disabled,
+input[type="reset"]:focus:disabled,
+input[type="button"]:focus:disabled {
+  color: #555;
+  /*border-color: #888;
+  outline: 0;*/ 
+
+}
+
+.preview-box {
+    background: #ffffff none repeat scroll 0 0;
+    border: 1px solid #cacaca;
+    cursor: pointer;
+    overflow: hidden;
+    padding: 15px;
+}
+
 /*START hide spinner from input with type=number
 ref: http://stackoverflow.com/questions/23372903/hide-spinner-in-input-number-firefox-29
 */
