@@ -2,13 +2,15 @@ from django import forms
 import datetime
 
 class LaporanForm(forms.Form):
+    SHAUM_CHOICES = ((True,'Ya'), (False,'Tidak'))
+
     created_date = forms.DateField(initial=datetime.date.today)
     tanggal = forms.DateField()
     tilawah_start = forms.IntegerField(required=False,max_value=604, min_value=0)
     tilawah_end = forms.IntegerField(required=False,max_value=604, min_value=0)
     ql = forms.IntegerField(required=False,min_value=0)
     dhuha = forms.IntegerField(required=False,min_value=0)
-    shaum = forms.BooleanField(required=False,)
+    shaum = forms.ChoiceField(required=False,widget=forms.RadioSelect, choices=SHAUM_CHOICES)
     raport = forms.BooleanField(required=False,)
 
     def clean(self):

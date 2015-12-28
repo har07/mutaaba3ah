@@ -1,5 +1,5 @@
 from django.http import HttpResponseRedirect, HttpResponse
-#from django.views.generic import TemplateView
+from django.views.generic.edit import FormView
 from django.shortcuts import render
 from google.appengine.api import users
 import urllib
@@ -8,6 +8,17 @@ import json
 from Index.models import *
 from Index.mutaaba3ah_forms import *
 from Index import form_helper as fh
+
+class LaporanView(FormView):
+    template_name = 'mutaaba3ah/form.html'
+    form_class = LaporanForm
+    success_url = '/thanks/'
+
+    def get(self, request, *args, **kwargs):
+        return super(LaporanView, self).get(request, *args, **kwargs)
+
+    def form_valid(self, form):
+        return super(LaporanView, self).form_valid(form)
 
 def main_page(request):
     #mutaaba3ah_name = request.GET.get('mutaaba3ah_name', MUTAABA3AH_NAME)
