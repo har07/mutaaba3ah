@@ -9,6 +9,7 @@
     </div>
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-right">
+        {% comment %}
         <li>
           <a href="{% url 'display_articles' %}">Blog</a>
         </li>
@@ -21,10 +22,13 @@
             <input id="search-submit" type="submit" value="Search">
           </form>
         </li>
+        {% endcomment %}
         {% if user.is_authenticated %}
+        {% comment %}
         <li>
           <a href="{% url 'admin_home' %}">Admin</a>
         </li>
+        {% endcomment %}
         <li>
           <a href="{% url 'logout' %}">Log Out</a>
         </li>
