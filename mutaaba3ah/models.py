@@ -8,7 +8,7 @@ class Entry(models.Model):
     """Define mutaaba'ah entry of a user on a certain day"""
 
     class Meta:
-        ordering = ['-created_at']
+        ordering = ['entry_date']
 
     owner = models.ForeignKey(settings.AUTH_USER_MODEL)
     created_at = models.DateTimeField(auto_now_add=True)

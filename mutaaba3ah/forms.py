@@ -43,3 +43,8 @@ class EntryForm(forms.ModelForm):
                 'title': 'Raport'
             })
         }
+
+class DeleteEntryForm(forms.ModelForm):
+    class Meta:
+        model = Entry
+        fields = []
