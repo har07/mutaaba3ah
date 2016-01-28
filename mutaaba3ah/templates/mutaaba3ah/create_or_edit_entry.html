@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+
+{% block title %}
+    {% if form.id.value %}
+        Edit Entry
+    {% else %}
+        Add Entry
+    {% endif %}
+{% endblock %}
+
+{% block main %}
+<div id="create-article" class="container">
+  <div class="row">
+    <span class="col-xs-12 create-icon">
+      <i class="fa fa-pencil fa-4x"></i>
+    </span>
+    {% if form.id.value %}
+        <h2>Edit an existing entry</h2>
+    {% else %}
+        <h2>Add a new entry</h2>
+    {% endif %}
+    <form id="create-new-article-x" class="form-horizontal" method="post">{% csrf_token %}
+        <div class="form-group">
+            <label for="id_entry_date" class="control-label col-xs-2">Tanggal</label>
+            <div class="col-xs-8">
+                {{ form.entry_date }}
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="id_tilawah_start" class="control-label col-xs-2">Tilawah</label>
+            <div class="col-xs-3">
+                {{ form.tilawah_start }}
+            </div>
+            <div class="col-xs-3">
+                {{ form.tilawah_end }}
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="id_ql" class="control-label col-xs-2">Qiyamullail</label>
+            <div class="col-xs-8">
+                <div class="input-group">
+                    {{ form.ql }}
+                    <span class="input-group-addon" id="raka3at1">raka'at</span>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="id_dhuha" class="control-label col-xs-2">Dhuha</label>
+            <div class="col-xs-8">
+                <div class="input-group">
+                    {{ form.dhuha }}
+                    <span class="input-group-addon" id="raka3at2">raka'at</span>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="id_shaum" class="control-label col-xs-2">Shaum</label>
+            <div class="col-xs-8 radio-group">
+                {{ form.shaum }}
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="id_raport" class="control-label col-xs-2">Raport</label>
+            <div class="col-xs-8 radio-group">
+                {{ form.raport }}
+            </div>
+        </div>
+      <!--{{ form.owner }}-->
+      <!--{{ form.entry_date }}-->
+      <!--{{ form.tilawah_start }}-->
+      <!--{{ form.tilawah_end }}-->
+      <input type="submit" class="col-xs-12 col-sm-offset-2 col-sm-8"/>
+    </form>
+  </div>
+</div>
+{% endblock %}

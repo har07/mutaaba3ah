@@ -7,3 +7,32 @@ iframe#coming-soon{
     height:100%;
     width:100%
 }
+
+/* start inline radio buttons style
+   http://stackoverflow.com/a/15710719/2998271
+*/
+
+.radio-group > ul{
+    background: #f7f7f7;
+    padding: 8px; /* Give the items some air to breathe */
+}
+
+.radio-group > ul > li {
+    display: inline-block;
+    zoom:1;
+    padding-right: 10px;
+    *display:inline;
+    /* this fix is needed for IE7- */
+}
+
+.radio-group > ul > li > input{
+    color: #666666;
+    text-decoration: none;
+    padding: 3px 8px;
+}
+
+.radio-group > ul > li > input:hover{
+    color: black;
+}
+
+/* end inline radio buttons style */
