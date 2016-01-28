@@ -14,4 +14,6 @@ $(document).ready(function() {
         dateFormat: 'yy-mm-dd'
   });
 
+  $('.tilawah-spinner > input').spinner();
+
 });
