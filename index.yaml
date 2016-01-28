@@ -32,3 +32,8 @@ indexes:
   properties:
   - name: app
   - name: name
+
+- kind: mutaaba3ah_entry
+  properties:
+  - name: owner_id
+  - name: entry_date

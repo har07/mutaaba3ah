@@ -8,6 +8,10 @@ iframe#coming-soon{
     width:100%
 }
 
+.hide{
+    display: hidden;
+}
+
 /* start inline radio buttons style
    http://stackoverflow.com/a/15710719/2998271
 */

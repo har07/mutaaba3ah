@@ -8,6 +8,7 @@ import datetime
 from models import Entry
 from forms import EntryForm, DeleteEntryForm
 
+
 @login_required()
 def add_or_edit_entry(request, id=None):
 
@@ -31,6 +32,7 @@ def add_or_edit_entry(request, id=None):
     data = {'form': form}
     return render(request, 'mutaaba3ah/create_or_edit_entry.html', data)
 
+
 @login_required()
 def display_entry(request, id):
     entry = get_object_or_404(Entry, id=id)
@@ -41,16 +43,18 @@ def display_entry(request, id):
 
     return render(request, 'mutaaba3ah/create_or_edit_entry.html', data)
 
+
 @login_required()
 def current_month_entries(request):
     now = datetime.datetime.now()
     current_month_year =now.strftime('%B %Y')
 
     data = {
-        'entries': Entry.objects.all(),
+        'entries': Entry.objects.filter(owner=request.user),
         'current_month_year': current_month_year,
     }
     return render(request, 'mutaaba3ah/index.html', data)
+
 
 @login_required()
 def delete_entry(request, id):
