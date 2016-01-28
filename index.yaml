@@ -35,5 +35,18 @@ indexes:
 
 - kind: mutaaba3ah_entry
   properties:
+  - name: _idx_month_entry_date
+  - name: _idx_year_entry_date
+  - name: owner_id
+  - name: entry_date
+
+- kind: mutaaba3ah_entry
+  properties:
+  - name: _idx_year_entry_date
+  - name: owner_id
+  - name: entry_date
+
+- kind: mutaaba3ah_entry
+  properties:
   - name: owner_id
   - name: entry_date

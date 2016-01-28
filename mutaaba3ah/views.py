@@ -48,9 +48,12 @@ def display_entry(request, id):
 def current_month_entries(request):
     now = datetime.datetime.now()
     current_month_year =now.strftime('%B %Y')
+    last_day_prev_month = datetime.date(now.year,now.month,1)  - datetime.timedelta(days=1)
 
     data = {
-        'entries': Entry.objects.filter(owner=request.user),
+        'entries': Entry.objects.filter(owner=request.user,
+                                        entry_date__gt=last_day_prev_month,
+                                        entry_date__lte=now.date()),
         'current_month_year': current_month_year,
     }
     return render(request, 'mutaaba3ah/index.html', data)
