@@ -9,7 +9,7 @@ class EntryForm(forms.ModelForm):
         widgets = {
             'entry_date': forms.DateInput(attrs={
                 'placeholder': 'Tanggal',
-                'class': 'form-control',
+                'class': 'form-control datepicker',
                 'title': 'Tanggal',
             }),
             'tilawah_start': forms.NumberInput(attrs={

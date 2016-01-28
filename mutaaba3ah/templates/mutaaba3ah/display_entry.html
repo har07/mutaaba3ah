@@ -1,24 +1,16 @@
 {% extends "base.html" %}
 
 {% block title %}
-    {% if form.id.value %}
-        Edit Entry
-    {% else %}
-        Add Entry
-    {% endif %}
+    Display Entry
 {% endblock %}
 
 {% block main %}
 <div id="create-article" class="container">
   <div class="row">
     <span class="col-xs-12 create-icon">
-      <i class="fa fa-pencil fa-4x"></i>
+      <i class="fa fa-folder-open fa-4x"></i>
     </span>
-    {% if form.id.value %}
-        <h2>Edit an existing entry</h2>
-    {% else %}
-        <h2>Add a new entry</h2>
-    {% endif %}
+    <h2>View entry</h2>
     <form id="create-new-article" class="form-horizontal" method="post">{% csrf_token %}
         <div class="form-group">
             <label for="id_entry_date" class="control-label col-xs-2">Tanggal</label>
@@ -59,11 +51,6 @@
                 {{ form.raport }}
             </div>
         </div>
-      <!--{{ form.owner }}-->
-      <!--{{ form.entry_date }}-->
-      <!--{{ form.tilawah_start }}-->
-      <!--{{ form.tilawah_end }}-->
-      <input type="submit" class="col-xs-12 col-sm-offset-2 col-sm-8"/>
     </form>
   </div>
 </div>

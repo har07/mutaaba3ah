@@ -5,7 +5,7 @@ import datetime
 MAX_HAL_ALQURAN = 604
 
 class Entry(models.Model):
-    """Define mutaaba'ah entry of a user on a certain day"""
+    """Define mutaba'ah entry of a user on a certain day"""
 
     class Meta:
         ordering = ['entry_date']
@@ -25,7 +25,7 @@ class Entry(models.Model):
     #Dhuha
     dhuha = models.IntegerField(blank=True, default=0)
 
-    BOOL_CHOICES = ((True, 'Yes'), (False, 'No'))
+    BOOL_CHOICES = ((True, 'Iya'), (False, 'Tidak'))
     #Shaum
     shaum = models.BooleanField(blank=True, default=False, choices=BOOL_CHOICES)
 

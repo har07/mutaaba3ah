@@ -8,4 +8,10 @@ $(document).ready(function() {
     }
   });
 
+
+  //initiate jquery-ui datepicker
+  $('.datepicker').datepicker({
+        dateFormat: 'yy-mm-dd'
+  });
+
 });

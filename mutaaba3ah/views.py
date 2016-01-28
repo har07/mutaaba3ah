@@ -41,7 +41,7 @@ def display_entry(request, id):
         'form': entry,
     }
 
-    return render(request, 'mutaaba3ah/create_or_edit_entry.html', data)
+    return render(request, 'mutaaba3ah/display_entry.html', data)
 
 
 @login_required()

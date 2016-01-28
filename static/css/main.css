@@ -12,6 +12,11 @@ iframe#coming-soon{
     display: hidden;
 }
 
+.datepicker{
+    position: relative;
+    z-index: 100;
+}
+
 /* start inline radio buttons style
    http://stackoverflow.com/a/15710719/2998271
 */
