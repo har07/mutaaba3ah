@@ -8,6 +8,13 @@ import datetime
 from models import Entry
 from forms import EntryForm, DeleteEntryForm
 
+def get_current_month_data(user, date):
+    now = date
+    last_day_prev_month = datetime.date(now.year,now.month,1)  - datetime.timedelta(days=1)
+    data = Entry.objects.filter(owner=user,
+                                entry_date__gt=last_day_prev_month,
+                                entry_date__lte=now.date())
+    return data
 
 @login_required()
 def add_or_edit_entry(request, id=None):
@@ -45,15 +52,24 @@ def display_entry(request, id):
 
 
 @login_required()
+def report(request, date_from=None, date_to=None):
+    #if both date_from & date_to params are empty
+    now = datetime.datetime.now()
+    if not(date_from) and not(date_to):
+        data = {
+            'entries': get_current_month_data(request.user, now)
+        }
+
+    return render(request, 'mutaaba3ah/report.html', data)
+
+
+@login_required()
 def current_month_entries(request):
     now = datetime.datetime.now()
     current_month_year =now.strftime('%B %Y')
-    last_day_prev_month = datetime.date(now.year,now.month,1)  - datetime.timedelta(days=1)
 
     data = {
-        'entries': Entry.objects.filter(owner=request.user,
-                                        entry_date__gt=last_day_prev_month,
-                                        entry_date__lte=now.date()),
+        'entries': get_current_month_data(request.user, now),
         'current_month_year': current_month_year,
     }
     return render(request, 'mutaaba3ah/index.html', data)

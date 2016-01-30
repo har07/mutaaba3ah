@@ -51,6 +51,9 @@ class Entry(models.Model):
     def display_shaum(self):
         return self.boolean_to_text(self.shaum)
 
+    def display_raport(self):
+        return self.boolean_to_text(self.raport)
+
     def display_dhuha(self):
         return self.raka3at_to_text(self.dhuha)
 

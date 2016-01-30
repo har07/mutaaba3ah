@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Report
+{% endblock %}
+
+{% block main %}
+<div id="create-article" class="container">
+    <div class="row">
+        <span class="col-xs-12 create-icon icon-margin">
+          <i class="fa fa-line-chart fa-4x"></i>
+        </span>
+        <h2>Mutaba'ah Report</h2>
+
+        <div class="col-xs-1"></div>
+        <div class="table-responsive col-xs-10">
+            <table class="table table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th>
+                            <div class="admin-title">Tanggal</div>
+                        </th>
+                        <th>
+                            <div class="admin-title">Tilawah</div>
+                        </th>
+                        <th>
+                            <div class="admin-title">QL</div>
+                        </th>
+                        <th>
+                            <div class="admin-title">Dhuha</div>
+                        </th>
+                        <th>
+                            <div class="admin-title">Shaum</div>
+                        </th>
+                        <th class="hide">
+                            <div class="admin-title">Raport</div>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for e in entries %}
+                        <tr>
+                            <td>{{ e.entry_date|date:"d M Y" }}</td>
+                            <td>{{ e.compute_tilawah }}</td>
+                            <td>{{ e.ql }}</td>
+                            <td>{{ e.dhuha }}</td>
+                            <td>{{ e.display_shaum }}</td>
+                            <td class="hide">{{ e.display_raport }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

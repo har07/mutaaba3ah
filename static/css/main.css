@@ -18,8 +18,11 @@ iframe#coming-soon{
 }
 
 .table{
-    margin-top: 10px;
     background: #ffffff;
+}
+
+.icon-margin{
+    margin-bottom: 10px !important;
 }
 
 /* start inline radio buttons style

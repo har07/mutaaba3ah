@@ -12,8 +12,11 @@ Mutaaba3ah
       <div class="row">
         <div class="admin-title col-xs-12">
           <span>{{ current_month_year }}</span>
-          <a class="add-article" title="Add new entry" href="{% url 'mutaaba3ah/add' %}">
+          <a class="add-article" title="New entry" href="{% url 'mutaaba3ah/add' %}">
             <i class="fa fa-plus-square pull-right"></i>
+          </a>
+          <a class="add-article" title="Report" href="{% url 'mutaaba3ah/report' %}">
+            <i class="fa fa-table pull-right"></i>
           </a>
         </div>
         {% for entry in entries %}
