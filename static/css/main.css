@@ -21,8 +21,25 @@ iframe#coming-soon{
     background: #ffffff;
 }
 
-.icon-margin{
+.long-icon{
     margin-bottom: 10px !important;
+}
+
+.div-filter{
+    margin: 10px;
+}
+
+.btn-filter{
+    margin-top: 0px !important;
+    font-size: 1.1em !important;
+}
+
+.div-filter-box{
+    border-bottom: 2px solid #2c3e50;
+    padding-bottom: 1em;
+    margin-bottom: 1em;
+    border-top: 2px solid #2c3e50;
+    padding-top: 1em;
 }
 
 /* start inline radio buttons style

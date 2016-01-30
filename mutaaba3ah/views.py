@@ -8,6 +8,8 @@ import datetime
 from models import Entry
 from forms import EntryForm, DeleteEntryForm
 
+DATE_FORMAT = '%Y%m%d'
+
 def get_current_month_data(user, date):
     now = date
     last_day_prev_month = datetime.date(now.year,now.month,1)  - datetime.timedelta(days=1)
@@ -52,15 +54,46 @@ def display_entry(request, id):
 
 
 @login_required()
-def report(request, date_from=None, date_to=None):
-    #if both date_from & date_to params are empty
+def report(request):
     now = datetime.datetime.now()
-    if not(date_from) and not(date_to):
-        data = {
-            'entries': get_current_month_data(request.user, now)
-        }
-
+    data = {
+        'entries': get_current_month_data(request.user, now)
+    }
     return render(request, 'mutaaba3ah/report.html', data)
+
+
+def get_date_from_string(datestring):
+    date_object = datetime.datetime.strptime(datestring, DATE_FORMAT)
+    return date_object
+
+
+@login_required()
+def get_report_content(request, date_from=None, date_to=None):
+    entries = []
+    # params = request.GET
+    # date_from = params.get('date_from')
+    # date_to = params.get('date_to')
+    if date_from and date_to:
+        date_from = get_date_from_string(date_from)
+        date_to = get_date_from_string(date_to)
+        entries = Entry.objects.filter(owner=request.user,
+                                        entry_date__gte=date_from,
+                                        entry_date__lte=date_to)[:100]
+    elif date_to:
+        date_from = get_date_from_string(date_from)
+        entries = Entry.objects.filter(owner=request.user,
+                                        entry_date__gte=date_from)[:100]
+    elif date_from:
+        date_to = get_date_from_string(date_to)
+        entries = Entry.objects.filter(owner=request.user,
+                                        entry_date__lte=date_to)[:100]
+    else:
+        entries = Entry.objects.filter(owner=request.user)[:100]
+
+    data = {
+        'entries': entries
+    }
+    return render(request, 'mutaaba3ah/report_content.html', data)
 
 
 @login_required()
