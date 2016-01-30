@@ -5,53 +5,41 @@
 {% endblock %}
 
 {% block main %}
-<div id="create-article" class="container">
-  <div class="row">
-    <span class="col-xs-12 create-icon">
-      <i class="fa fa-folder-open fa-4x"></i>
-    </span>
-    <h2>View entry</h2>
-    <form id="create-new-article" class="form-horizontal" method="post">{% csrf_token %}
-        <div class="form-group">
-            <label for="id_entry_date" class="control-label col-xs-2">Tanggal</label>
-            <div class="col-xs-8">
-                {{ form.entry_date }}
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="id_tilawah_start" class="control-label col-xs-2">Tilawah</label>
-            <div class="col-xs-3">
-                {{ form.tilawah_start }}
-            </div>
-            <div class="col-xs-3">
-                {{ form.tilawah_end }}
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="id_ql" class="control-label col-xs-2">Qiyamullail</label>
-            <div class="col-xs-8">
-                {{ form.ql }}
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="id_dhuha" class="control-label col-xs-2">Dhuha</label>
-            <div class="col-xs-8">
-                {{ form.dhuha }}
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="id_shaum" class="control-label col-xs-2">Shaum</label>
-            <div class="col-xs-8 radio-group">
-                {{ form.shaum }}
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="id_raport" class="control-label col-xs-2">Raport</label>
-            <div class="col-xs-8 radio-group">
-                {{ form.raport }}
-            </div>
-        </div>
-    </form>
-  </div>
+<div class="row">
+    <div class="col-xs-3"></div>
+    <div class="table-responsive col-xs-6">
+        <table class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th colspan="2">
+                        <div class="admin-title">
+                            {{ form.owner.username }}, {{ form.entry_date|date:"d M Y" }}
+                        </div>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Tilawah</td>
+                    <td>{{ form.display_tilawah }}</td>
+                </tr>
+                <tr>
+                    <td>Qiyamul Lail</td>
+                    <td>{{ form.display_ql }}
+                <tr>
+                    <td>Dhuha</td>
+                    <td>{{ form.display_dhuha }}</td>
+                </tr>
+                <tr>
+                    <td>Shaum</td>
+                    <td>{{ form.display_shaum }}</td>
+                </tr>
+                <tr class="hide">
+                    <td>Raport</td>
+                    <td>{{ form.raport }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </div>
 {% endblock %}

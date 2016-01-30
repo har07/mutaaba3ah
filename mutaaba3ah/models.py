@@ -37,3 +37,28 @@ class Entry(models.Model):
             return (MAX_HAL_ALQURAN + 1 - self.tilawah_start) + self.tilawah_end
 
         return self.tilawah_end - self.tilawah_start + 1
+
+    def boolean_to_text(self, value):
+        if value:
+            return 'Iya'
+        return 'Tidak'
+
+    def raka3at_to_text(self, value):
+        if value > 0:
+            return str(value) + " raka'at"
+        return "-"
+
+    def display_shaum(self):
+        return self.boolean_to_text(self.shaum)
+
+    def display_dhuha(self):
+        return self.raka3at_to_text(self.dhuha)
+
+    def display_ql(self):
+        return self.raka3at_to_text(self.ql)
+
+    def display_tilawah(self):
+        if self.compute_tilawah() > 0:
+            return str.format("{0} - {1}, total {2} halaman", \
+                          str(self.tilawah_start), str(self.tilawah_end), \
+                          str(self.compute_tilawah()))

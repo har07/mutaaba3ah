@@ -10,6 +10,7 @@ class EntryForm(forms.ModelForm):
             'entry_date': forms.DateInput(attrs={
                 'placeholder': 'Tanggal',
                 'class': 'form-control datepicker',
+                'readonly': 'readonly',
                 'title': 'Tanggal',
             }),
             'tilawah_start': forms.NumberInput(attrs={
@@ -23,7 +24,7 @@ class EntryForm(forms.ModelForm):
                 'title': 'Halaman selesai'
             }),
             'ql': forms.NumberInput(attrs={
-                'placeholder': 'Qiyamullail',
+                'placeholder': 'Qiyamul Lail',
                 'class': 'form-control',
                 'aria-describedby': 'raka3at1',
                 'title': 'Qiyamullail'

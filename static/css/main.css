@@ -17,6 +17,11 @@ iframe#coming-soon{
     z-index: 100;
 }
 
+.table{
+    margin-top: 10px;
+    background: #ffffff;
+}
+
 /* start inline radio buttons style
    http://stackoverflow.com/a/15710719/2998271
 */
