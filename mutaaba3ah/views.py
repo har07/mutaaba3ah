@@ -29,7 +29,7 @@ def add_or_edit_entry(request, id=None):
     else:
         form = EntryForm(instance=entry)
 
-    data = {'form': form}
+    data = {'form': form, 'is_new': bool(id)}
     return render(request, 'mutaaba3ah/create_or_edit_entry.html', data)
 
 

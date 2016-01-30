@@ -19,6 +19,7 @@ Mutaaba3ah
         {% for entry in entries %}
           <div class="article-info col-xs-12">
             <a class="col-xs-8" href="{% url 'mutaaba3ah/display' entry.id %}">{{ entry.entry_date }}</a>
+            <a class="col-xs-2" href="{% url 'mutaaba3ah/edit' entry.id %}">Edit</a>
             <a class="col-xs-2" href="{% url 'mutaaba3ah/delete' entry.id %}">Delete</a>
           </div>
         {% endfor %}

@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block title %}
-    {% if form.id.value %}
+    {% if is_new %}
         Edit Entry
     {% else %}
         Add Entry
@@ -14,7 +14,7 @@
     <span class="col-xs-12 create-icon">
       <i class="fa fa-pencil fa-4x"></i>
     </span>
-    {% if form.id.value %}
+    {% if is_new %}
         <h2>Edit an existing entry</h2>
     {% else %}
         <h2>Add a new entry</h2>
@@ -65,10 +65,6 @@
                 {{ form.raport }}
             </div>
         </div>
-      <!--{{ form.owner }}-->
-      <!--{{ form.entry_date }}-->
-      <!--{{ form.tilawah_start }}-->
-      <!--{{ form.tilawah_end }}-->
       <input type="submit" class="col-xs-12 col-sm-offset-2 col-sm-8" value="Submit"/>
     </form>
   </div>
