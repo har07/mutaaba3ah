@@ -47,7 +47,12 @@ $(document).ready(function() {
   });
 
   //initiate jquery-ui tooltip
-  $('[data-toggle="tooltip"]').tooltip();
+  $('[data-toggle="tooltip"]').tooltip({
+    position: {
+        my: "left bottom-10", // the "anchor point" in the tooltip element
+        at: "left top", // the position of that anchor point relative to selected element
+    }
+  });
 
   //filter button
   $("input.btn-filter")

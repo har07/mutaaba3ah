@@ -15,8 +15,8 @@ class Entry(models.Model):
     entry_date = models.DateField(default=datetime.datetime.today())
 
     #tilawah
-    tilawah_start = models.IntegerField(blank=True)
-    tilawah_end = models.IntegerField(blank=True)
+    tilawah_start = models.IntegerField(blank=True, default=0)
+    tilawah_end = models.IntegerField(blank=True, default=0)
 
      #Qiyamul Lail
     ql = models.IntegerField(blank=True, default=0)
