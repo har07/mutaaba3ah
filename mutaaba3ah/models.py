@@ -12,8 +12,7 @@ class Entry(models.Model):
 
     owner = models.ForeignKey(settings.AUTH_USER_MODEL)
     created_at = models.DateTimeField(auto_now_add=True)
-    #TODO: hapus " - datetime.timedelta(days=30)" sebelum di deploy
-    entry_date = models.DateField(default=datetime.datetime.today() - datetime.timedelta(days=30))
+    entry_date = models.DateField(default=datetime.datetime.today())
 
     #tilawah
     tilawah_start = models.IntegerField(blank=True)
