@@ -46,6 +46,9 @@ $(document).ready(function() {
         dateFormat: 'yy-mm-dd'
   });
 
+  //initiate jquery-ui tooltip
+  $('[data-toggle="tooltip"]').tooltip();
+
   //filter button
   $("input.btn-filter")
         .button()
