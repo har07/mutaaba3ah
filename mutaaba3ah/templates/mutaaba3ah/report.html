@@ -7,21 +7,23 @@
 {% block main %}
 <div id="create-article" class="container">
     <div class="row">
-        <span class="col-xs-12 create-icon long-icon">
+        <span class="col-md-12 col-xs-12 create-icon long-icon">
           <i class="fa fa-line-chart fa-4x"></i>
         </span>
         <h2>Mutaba'ah Report</h2>
     </div>
     <div class="row div-filter">
-        <div class="col-xs-1"></div>
-        <div class="col-xs-10 div-filter-box">
-            <div class="col-xs-2">
-                <input type="text" placeholder="date from" class="form-control readonly datepicker" id="date_from">
+        <div class="col-md-1 large-screen-only"></div>
+        <div class="col-md-10 div-filter-box">
+            <div class="col-md-2">
+                <input type="text" placeholder="date from" title="date from" data-toggle="tooltip"
+                       class="form-control readonly datepicker" id="date_from">
             </div>
-            <div class="col-xs-2">
-                <input type="text" placeholder="date to" class="form-control readonly datepicker" id="date_to">
+            <div class="col-md-2">
+                <input type="text" placeholder="date to" title="date to" data-toggle="tooltip"
+                       class="form-control readonly datepicker" id="date_to">
             </div>
-            <div class="col-xs-2">
+            <div class="col-md-2">
                 <input type="submit" value="Filter" id="submit" class="btn-filter">
             </div>
         </div>

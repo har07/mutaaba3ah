@@ -47,13 +47,26 @@ iframe#coming-soon{
     font-size: 120%;
 }
 
-/* decrease padding and placeholder text on small screen */
-@media screen and (max-width: 780px) {
-    .tilawah-from{
+/* CSS specific for mobile (small screens) */
+@media screen and (max-width: 480px) {
+    /* decrease padding on small screen */
+    .tilawah-from, .filter-date-from{
         padding-right: 0.5em !important;
     }
-    .tilawah-to{
+    .tilawah-to, .filter-date-to{
         padding-left: 0.5em !important;
+    }
+    .div-filter .datepicker{
+        margin-bottom: 0.5em !important;
+    }
+    /* gagal: saling timpa (numpuk)
+    .div-filter input[type="text"]{
+        min-width: 9em;
+    }
+    */
+    /* hide on small screen */
+    .large-screen-only{
+        display: none;
     }
 }
 
