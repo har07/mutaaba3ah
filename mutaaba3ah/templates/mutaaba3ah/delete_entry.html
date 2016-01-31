@@ -5,18 +5,55 @@ Delete Article
 {% endblock %}
 
 {% block main %}
-<div id="delete-article" class="container">
+<div id="create-article" class="container">
   <div class="row">
-    <span class="col-xs-12 delete-icon">
+    <span class="col-xs-12 create-icon">
       <i class="fa fa-trash fa-4x"></i>
     </span>
     <h2>Delete an entry</h2>
-    <p class="delete-warning" class="col-xs-12">
-      This is an irreversible action. Please confirm if you would like to delete 
-      this entry or <a href="{% url 'mutaaba3ah' %}">cancel</a>.
-    </p>
-    <form id="delete-article" method="post">{% csrf_token %}
-      <input type="submit" value="Delete" class="col-xs-6 col-sm-offset-5 col-sm-2"/>
+  </div>
+  <div class="row">
+    <div class="col-xs-1"></div>
+    <div class="table-responsive col-xs-10">
+        <table class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th colspan="2">
+                        <div class="admin-title">{{ entry.entry_date|date:"d M Y" }}</div>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Tilawah</td>
+                    <td>{{ entry.display_tilawah }}</td>
+                </tr>
+                <tr>
+                    <td>Qiyamul Lail</td>
+                    <td>{{ entry.display_ql }}
+                <tr>
+                    <td>Dhuha</td>
+                    <td>{{ entry.display_dhuha }}</td>
+                </tr>
+                <tr>
+                    <td>Shaum</td>
+                    <td>{{ entry.display_shaum }}</td>
+                </tr>
+                <tr class="hide">
+                    <td>Raport</td>
+                    <td>{{ entry.dispay_raport }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+  </div>
+  <div class="row">
+    <form id="delete-article" class="form-horizontal" method="post">{% csrf_token %}
+      <p class="delete-warning" class="col-xs-12">
+        This is an <b>irreversible</b> action. Please confirm if you would like to delete
+        this entry or <a href="{% url 'mutaaba3ah' %}"><b>cancel</b></a>.
+      </p>
+      <input type="submit" value="Delete" class="col-xs-6 col-xs-offset-3 col-sm-2 col-sm-offset-5"/>
     </form>
   </div>
 </div>

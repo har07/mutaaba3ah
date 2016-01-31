@@ -126,5 +126,5 @@ def delete_entry(request, id):
     else:
         form = DeleteEntryForm(instance=entry)
 
-    data = {'form': form}
+    data = {'form': form, 'entry': entry}
     return render(request, 'mutaaba3ah/delete_entry.html', data)

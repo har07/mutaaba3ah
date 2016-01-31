@@ -42,6 +42,11 @@ iframe#coming-soon{
     padding-top: 1em;
 }
 
+.delete-warning b{
+    color: red !important;
+    font-size: 120%;
+}
+
 /* decrease padding and placeholder text on small screen */
 @media screen and (max-width: 780px) {
     .tilawah-from{
