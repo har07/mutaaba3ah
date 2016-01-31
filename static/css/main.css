@@ -59,11 +59,6 @@ iframe#coming-soon{
     .div-filter .datepicker{
         margin-bottom: 0.5em !important;
     }
-    /* gagal: saling timpa (numpuk)
-    .div-filter input[type="text"]{
-        min-width: 9em;
-    }
-    */
     /* hide on small screen */
     .large-screen-only{
         display: none;
