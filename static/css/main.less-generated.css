@@ -1,0 +1,356 @@
+html {
+  background: #ecf0f1;
+}
+body {
+  color: #2c3e50;
+  background-color: #ecf0f1;
+  font-size: 14px;
+  font-family: 'Roboto', sans-serif;
+}
+h1 {
+  font-size: 40px;
+}
+a {
+  color: #2c3e50;
+}
+a:hover {
+  text-decoration: underline;
+}
+input,
+textarea {
+  box-shadow: none;
+  padding: 10px;
+}
+input:focus,
+textarea:focus {
+  outline: none;
+  box-shadow: none;
+}
+input[type='submit'] {
+  color: #fff;
+  background: #2c3e50;
+  font-size: 18px;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-top: 10px;
+}
+input[type='submit']:hover {
+  color: #fff;
+  background: #16a085;
+}
+*:focus {
+  outline: none;
+  box-shadow: none;
+}
+nav {
+  color: #fff;
+  padding: 5px;
+  font-size: 18px;
+  background: #16a085;
+  text-transform: uppercase;
+}
+nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+nav li a:hover {
+  color: #2c3e50;
+}
+nav a {
+  color: #fff;
+}
+nav input[type='submit'] {
+  font-weight: 400;
+  margin: 2px 0;
+}
+nav input[type='submit']:hover {
+  text-decoration: underline;
+}
+nav.navbar {
+  margin: 0;
+}
+.navbar-nav>li>a:hover {
+  background: #16a085;
+  text-decoration: underline;
+}
+input:-webkit-autofill,
+input:-webkit-autofill:focus {
+  -webkit-box-shadow: 0 0 0px 1000px #fff inset;
+}
+#articles-grid .caption {
+  margin: 10px 0 0;
+}
+#articles-grid .title {
+  margin: 5px 0 0;
+}
+#articles-grid .content {
+  margin: 5px 0 0;
+}
+#articles-grid .meta {
+  display: block;
+}
+#articles-grid .meta a {
+  color: #2c3e50;
+}
+#articles-grid .image-wrapper {
+  overflow: hidden;
+  height: 200px;
+  padding: 0;
+  background: #000;
+  position: relative;
+  margin: 0 0 10px 0;
+}
+#articles-grid img {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  -webkit-transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  -ms-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+#articles-grid img:hover {
+  -webkit-transform: scale(1.4);
+  -moz-transform: scale(1.4);
+  -ms-transform: scale(1.4);
+  -o-transform: scale(1.4);
+  transform: scale(1.4);
+  opacity: 0.2;
+}
+#articles-grid .image-text {
+  visibility: hidden;
+  width: 100%;
+  color: #fff;
+  position: absolute;
+  text-align: center;
+  top: 100px;
+  text-decoration: underline;
+  z-index: 100;
+}
+#articles-grid .title a {
+  color: #16a085;
+}
+#articles-grid img:hover + .image-text {
+  visibility: visible;
+}
+.article-preview {
+  margin: 0 0 40px 0;
+}
+#articles-grid.feed {
+  list-style-type: none;
+  padding: 0;
+  margin-top: 60px;
+}
+#articles-grid.feed h3 {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  padding: 15px 0 5px 0;
+}
+#articles-grid.feed .image-wrapper {
+  height: 100px;
+}
+#articles-grid.feed .image-text {
+  top: 40px;
+}
+#articles-grid.feed .caption {
+  margin: 0;
+  height: 100px;
+}
+#articles-grid.feed .read-more:hover {
+  color: #16a085;
+}
+#articles-grid.feed .title {
+  margin: 0;
+}
+#articles-grid.feed .read-more {
+  text-decoration: underline;
+  cursor: pointer;
+}
+#articles-grid.feed .article-preview {
+  margin: 0 0 20px 0;
+}
+#articles-grid.feed li {
+  padding: 0;
+}
+#feed-container .fa-spin {
+  text-align: center;
+}
+#article img {
+  height: auto;
+  width: 100%;
+}
+#article .img-container {
+  margin: 10px 0 20px 0;
+}
+#article .options {
+  margin-top: 10px;
+}
+#article .share {
+  list-style-type: none;
+  padding: 0;
+  display: inline;
+}
+#article .share li {
+  display: inline;
+}
+#article .share li:hover {
+  cursor: pointer;
+}
+#article .display-articles {
+  float: right;
+}
+#article .fa-trash {
+  color: #C92228;
+}
+#article .fa-pencil-square {
+  color: #dd4b39;
+}
+#article .fa-facebook-official {
+  color: #3B5998;
+}
+#article .fa-google-plus-square {
+  color: #dd4b39;
+}
+#article .fa-twitter-square {
+  color: #4099FF;
+}
+#article .fa-pinterest-square {
+  color: #C92228;
+}
+#comments {
+  margin-bottom: 40px;
+}
+#comments .comment {
+  padding: 10px 20px;
+  border-bottom: 1px solid #CCC;
+}
+#comments .comment .meta {
+  display: block;
+}
+#comments .comment .message {
+  display: block;
+}
+.admin-options {
+  list-style-type: none;
+  padding: 0;
+  float: right;
+  display: inline;
+}
+.admin-options li {
+  display: inline;
+}
+.admin-options li:hover {
+  cursor: pointer;
+}
+#admin-home .admin-option {
+  height: 400px;
+  background: #bdc3c7;
+  text-align: center;
+}
+#article-admin {
+  background: #fff;
+}
+#article-admin .add_article i {
+  padding: 3px;
+  color: #fff;
+}
+#article-admin .add_article i:hover {
+  color: #2c3e50;
+}
+#delete-article a {
+  text-decoration: underline;
+}
+#delete-article input[type='submit'] {
+  background: #C92228;
+}
+.article-info {
+  padding: 10px 0;
+  background: #CCC;
+}
+.admin-title {
+  background: #16a085;
+  width: 100%;
+  display: block;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: #fff;
+  font-size: 18px;
+  padding: 10px 15px;
+}
+.admin-title .add-article:hover {
+  background: #fff;
+}
+#admin-home a {
+  color: #2c3e50;
+  text-decoration: underline;
+}
+#admin-home a:hover {
+  color: #16a085;
+}
+#login {
+  background: #ecf0f1;
+  border-radius: 2px;
+  padding-bottom: 60px;
+  margin-top: 60px;
+}
+#login i {
+  padding: 10px;
+}
+#login h2,
+#create-article h2 {
+  font-size: 20px;
+  font-weight: 700;
+}
+#search-form {
+  display: inline;
+}
+#search-keywords {
+  height: 22px;
+  padding: 5px;
+  color: #2c3e50;
+  font-size: 14px;
+  font-weight: 400;
+}
+#search-submit {
+  color: #fff;
+  background: #16a085;
+  border: none;
+}
+#search-submit:hover {
+  color: #2c3e50;
+}
+.block {
+  display: block;
+}
+.hidden {
+  display: none;
+}
+.text-center {
+  text-align: center;
+}
+#create-article h2,
+#create-article .create-icon,
+#delete-article h2,
+#delete-article .delete-icon,
+.delete-warning {
+  text-align: center;
+}
+#create-article .create-icon,
+#delete-article .delete-icon {
+  margin: 20px 0 0;
+}
+#create-new-article input,
+#create-new-article textarea,
+#login input,
+#add-comment textarea {
+  padding: 5px;
+  margin-top: 10px;
+}
+.navbar-toggle {
+  padding: 0;
+}

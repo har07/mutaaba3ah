@@ -15,21 +15,6 @@ function getDateStringFromCalendar(cal){
     return cal.datepicker('getDate').toDateString();
 }
 
-function updateReportData(){
-    var datefrom = getDateStringFromCalendar($('#date_from'));
-    var dateto = getDateStringFromCalendar($('#date_to'));
-    var updateContent = function(data){
-        $('#report_content').replaceWith(data);
-    };
-    var ajaxParams = {
-        type: 'GET',
-        url: '/mutaaba3ah/report/get_report_content/' + datefrom + '/' + dateto,
-        dataType: 'html',
-        success: updateContent
-    };
-     $.ajax(ajaxParams);
-}
-
 $(document).ready(function() {
 
   // listen to click events on search nav element
@@ -39,7 +24,6 @@ $(document).ready(function() {
       $("#search-keywords").toggleClass("hidden");
     }
   });
-
 
   //initiate jquery-ui datepicker
   $('.datepicker').datepicker({
@@ -53,14 +37,6 @@ $(document).ready(function() {
         at: "left top", // the position of that anchor point relative to selected element
     }
   });
-
-  //filter button
-  $("input.btn-filter")
-        .button()
-        .click(function( event ) {
-            event.preventDefault();
-            updateReportData();
-        });
 
 //  $('.tilawah-spinner > input').spinner();
 

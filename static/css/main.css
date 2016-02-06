@@ -47,6 +47,21 @@ iframe#coming-soon{
     font-size: 120%;
 }
 
+/* flat-ui style dropdown menu
+ref F12 (inspect element) http://designmodo.github.io/Flat-UI/ */
+.dropdown-menu{
+    background-color: #f3f4f5;
+    border: medium none;
+    border-radius: 4px;
+    box-shadow: none;
+    font-size: 14px;
+    margin-top: 9px;
+    min-width: 220px;
+    padding: 0;
+    z-index: 1000;
+}
+/* end flat-ui style dropdown menu */
+
 /* CSS specific for mobile (small screens) */
 @media screen and (max-width: 480px) {
     /* decrease padding on small screen */

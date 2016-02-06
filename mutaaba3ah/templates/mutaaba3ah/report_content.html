@@ -1,9 +1,15 @@
 <div class="row" id="report_content">
     <div class="col-md-1"></div>
     <div class="table-responsive col-md-10">
-        <table class="table table-bordered table-hover">
+        <table class="table table-bordered table-hover selectable">
             <thead>
                 <tr>
+                    <th class="hide">
+                        <div>url_edit</div>
+                    </th>
+                    <th class="hide">
+                        <div>url_delete</div>
+                    </th>
                     <th>
                         <div class="admin-title">Tanggal</div>
                     </th>
@@ -27,6 +33,8 @@
             <tbody>
                 {% for e in entries %}
                     <tr>
+                        <td class="hide edit-url">{% url 'mutaaba3ah/edit' e.id %}</td>
+                        <td class="hide delete-url">{% url 'mutaaba3ah/delete' e.id %}</td>
                         <td>{{ e.entry_date|date:"d M Y" }}</td>
                         <td>{{ e.compute_tilawah }}</td>
                         <td>{{ e.ql }}</td>

@@ -1,46 +1,36 @@
 <nav class="navbar">
-  <div class="container">
+  <div class="container container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
         <span class="sr-only">Toggle navigation</span>
-        <span class="fa fa-bars"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
       </button>
       <a class="navbar-brand" href="{% url 'home' %}">Abu Bakar Ash-Shiddiq</a>
     </div>
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      {% if user.is_authenticated %}
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="{% url 'mutaaba3ah' %}">Mutaba'ah <span class="sr-only">(current)</span></a></li>
+      </ul>
+      {% endif %}
       <ul class="nav navbar-nav navbar-right">
-        {% comment %}
-        <li>
-          <a href="{% url 'display_articles' %}">Blog</a>
-        </li>
-        <li>
-          <a href="{% url 'feed' %}">Feed</a>
-        </li>
-        <li>
-          <form id="search-form" action="/search">
-            <input id="search-keywords" class="hidden" placeholder="Enter your search term..." type="search" name="search">
-            <input id="search-submit" type="submit" value="Search">
-          </form>
-        </li>
-        {% endcomment %}
         {% if user.is_authenticated %}
-        {% comment %}
-        <li>
-          <a href="{% url 'admin_home' %}">Admin</a>
-        </li>
-        {% endcomment %}
-        <li>
-          <a href="{% url 'mutaaba3ah' %}">Mutaba'ah</a>
-        </li>
-        <li>
-          <a href="{% url 'logout' %}">Log Out</a>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+             aria-expanded="false">Account <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="{% url 'logout' %}">Logout</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#">{{ user.email }}</a></li>
+          </ul>
         </li>
         {% else %}
-        <li>
-          <a href="{% url 'login' %}">Log In</a>
-        </li>
+        <a href="{% url 'login' %}">Log In</a>
         {% endif %}
       </ul>
-    </div>
-  </div>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
 </nav>

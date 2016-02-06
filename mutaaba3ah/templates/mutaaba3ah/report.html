@@ -27,10 +27,19 @@
                 <!--</span>-->
             </div>
             <div class="col-md-2">
-                <input type="submit" value="Filter" id="submit" class="btn-filter">
+                <input type="submit" value="Filter" id="submit" class="btn btn-filter">
+            </div>
+            <div class="col-md-4">
+                <input type="submit" value="Edit" id="edit" class="btn btn-filter btn-grid" disabled>
+                <input type="submit" value="Delete" id="delete" class="btn btn-filter btn-grid" disabled>
             </div>
         </div>
     </div>
     {% include "mutaaba3ah/report_content.html" %}
 </div>
+{% endblock %}
+
+{% block scripts %}
+{% load staticfiles %}
+<script src="{% static 'js/report.js' %}"></script>
 {% endblock %}
