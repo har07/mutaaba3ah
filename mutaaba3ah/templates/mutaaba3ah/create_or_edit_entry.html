@@ -1,75 +1,80 @@
 {% extends "base.html" %}
 
 {% block title %}
-    {% if is_new %}
-        Edit Entry
-    {% else %}
-        Add Entry
-    {% endif %}
+{% if is_new %}
+Edit Entry
+{% else %}
+Add Entry
+{% endif %}
 {% endblock %}
 
 {% block main %}
 <div id="page-title" class="container">
-  <div class="row">
-    {% if is_new %}
+    <div class="row">
+        {% if is_new %}
         <span class="col-xs-12 create-icon">
           <i class="fa fa-edit fa-4x"></i>
         </span>
         <h2>Edit an existing entry</h2>
-    {% else %}
+        {% else %}
         <span class="col-xs-12 create-icon long-icon">
           <i class="fa fa-file-o fa-4x"></i>
         </span>
         <h2>Create a new entry</h2>
-    {% endif %}
-    <form id="create-or-edit-entry" class="form-horizontal" method="post">{% csrf_token %}
-        <div class="form-group">
-            <label for="id_entry_date" class="control-label col-xs-3">Tanggal</label>
-            <div class="col-xs-7">
-                {{ form.entry_date }}
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="id_tilawah_start" class="control-label col-xs-3">Tilawah</label>
-            <div class="col-xs-3 tilawah-spinner tilawah-from" title="Halaman mulai" data-toggle="tooltip">
-                {{ form.tilawah_start }}
-            </div>
-            <div class="col-xs-3 tilawah-spinner tilawah-to" title="Halaman selesai" data-toggle="tooltip">
-                {{ form.tilawah_end }}
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="id_ql" class="control-label col-xs-3">Qiyamullail</label>
-            <div class="col-xs-7">
-                <div class="input-group">
-                    {{ form.ql }}
-                    <span class="input-group-addon" id="raka3at1">raka'at</span>
+        {% endif %}
+        <form id="create-or-edit-entry" class="form-horizontal" method="post">{% csrf_token %}
+            <div class="form-group">
+                <label for="id_entry_date" class="control-label col-xs-3">Tanggal</label>
+                <div class="col-xs-7">
+                    {{ form.entry_date }}
                 </div>
             </div>
-        </div>
-        <div class="form-group">
-            <label for="id_dhuha" class="control-label col-xs-3">Dhuha</label>
-            <div class="col-xs-7">
-                <div class="input-group">
-                    {{ form.dhuha }}
-                    <span class="input-group-addon" id="raka3at2">raka'at</span>
+            <div class="form-group">
+                <label for="id_tilawah_start" class="control-label col-xs-3">Tilawah</label>
+                <div class="col-xs-3 tilawah-spinner tilawah-from" title="Halaman mulai" data-toggle="tooltip">
+                    {{ form.tilawah_start }}
+                </div>
+                <div class="col-xs-3 tilawah-spinner tilawah-to" title="Halaman selesai" data-toggle="tooltip">
+                    {{ form.tilawah_end }}
                 </div>
             </div>
-        </div>
-        <div class="form-group">
-            <label for="id_shaum" class="control-label col-xs-3">Shaum</label>
-            <div class="col-xs-7 radio-group">
-                {{ form.shaum }}
+            <div class="form-group">
+                <label for="id_ql" class="control-label col-xs-3">Qiyamullail</label>
+                <div class="col-xs-7">
+                    <div class="input-group">
+                        {{ form.ql }}
+                        <span class="input-group-addon" id="raka3at1">raka'at</span>
+                    </div>
+                </div>
             </div>
-        </div>
-        <div class="form-group hide">
-            <label for="id_raport" class="control-label col-xs-3">Raport</label>
-            <div class="col-xs-7 radio-group">
-                {{ form.raport }}
+            <div class="form-group">
+                <label for="id_dhuha" class="control-label col-xs-3">Dhuha</label>
+                <div class="col-xs-7">
+                    <div class="input-group">
+                        {{ form.dhuha }}
+                        <span class="input-group-addon" id="raka3at2">raka'at</span>
+                    </div>
+                </div>
             </div>
-        </div>
-      <input type="submit" class="col-xs-12 col-sm-offset-2 col-sm-8" value="Submit"/>
-    </form>
-  </div>
+            <div class="form-group">
+                <label for="id_shaum" class="control-label col-xs-3">Shaum</label>
+                <div class="col-xs-7 radio-group">
+                    {{ form.shaum }}
+                </div>
+            </div>
+            <div class="form-group hide">
+                <label for="id_raport" class="control-label col-xs-3">Raport</label>
+                <div class="col-xs-7 radio-group">
+                    {{ form.raport }}
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="btn-submit" class="control-label col-xs-3"></label>
+                <div class="col-xs-7">
+                    <input type="submit" class="btn btn-lg btn-wide btn-inverse btn-block" value="Submit"/>
+                </div>
+            </div>
+        </form>
+    </div>
 </div>
 {% endblock %}
