@@ -34,6 +34,10 @@ iframe#coming-soon{
     font-size: 1.1em !important;
 }
 
+.btn-filter.pull-right{
+    margin-left: 15px;
+}
+
 .div-filter-box{
     border-bottom: 2px solid #2c3e50;
     padding-bottom: 1em;
