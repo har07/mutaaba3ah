@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block title %}
-    Display Entry
+Display Entry
 {% endblock %}
 
 {% block main %}
@@ -16,35 +16,39 @@
         <div class="table-responsive col-xs-10">
             <table class="table table-bordered table-hover">
                 <thead>
-                    <tr>
-                        <th colspan="2">
-                            <div class="admin-title">{{ form.entry_date|date:"d M Y" }}</div>
-                        </th>
-                    </tr>
+                <tr>
+                    <th colspan="2">
+                        <div class="table-title">{{ form.entry_date|date:"d M Y" }}</div>
+                    </th>
+                </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>Tilawah</td>
-                        <td>{{ form.display_tilawah }}</td>
-                    </tr>
-                    <tr>
-                        <td>Qiyamul Lail</td>
-                        <td>{{ form.display_ql }}
-                    <tr>
-                        <td>Dhuha</td>
-                        <td>{{ form.display_dhuha }}</td>
-                    </tr>
-                    <tr>
-                        <td>Shaum</td>
-                        <td>{{ form.display_shaum }}</td>
-                    </tr>
-                    <tr class="hide">
-                        <td>Raport</td>
-                        <td>{{ form.display_raport }}</td>
-                    </tr>
+                <tr>
+                    <td>Tilawah</td>
+                    <td>{{ form.display_tilawah }}</td>
+                </tr>
+                <tr>
+                    <td>Qiyamul Lail</td>
+                    <td>{{ form.display_ql }}
+                <tr>
+                    <td>Dhuha</td>
+                    <td>{{ form.display_dhuha }}</td>
+                </tr>
+                <tr>
+                    <td>Shaum</td>
+                    <td>{{ form.display_shaum }}</td>
+                </tr>
+                <tr class="hide">
+                    <td>Raport</td>
+                    <td>{{ form.display_raport }}</td>
+                </tr>
                 </tbody>
             </table>
         </div>
+    </div>
+    <div class="row hide">
+        <a href="window.history.back()"
+           class="btn btn-lg btn-wide btn-inverse col-xs-6 col-xs-offset-3 col-sm-2 col-sm-offset-5">Back</a>
     </div>
 </div>
 {% endblock %}

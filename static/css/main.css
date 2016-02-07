@@ -22,7 +22,8 @@ body {
 }
 
 .table-title {
-  background: #16a085;
+  background: #1abc9c;
+  border-radius: 4px;
   width: 100%;
   display: block;
   text-transform: uppercase;
@@ -48,7 +49,7 @@ body {
     margin-bottom: 10px !important;
 }
 
-.div-filter{
+.div-filter, .grid-controls{
     margin: 10px;
 }
 
@@ -60,7 +61,8 @@ body {
     padding-top: 1em;
 }
 
-.div-filter-box .btn{
+.div-filter-box .btn
+, .grid-controls .btn{
     margin-left: 1em;
 }
 
@@ -94,6 +96,12 @@ body {
     }
     .div-filter .datepicker{
         margin-bottom: 0.5em !important;
+    }
+    .div-filter-box .btn{
+        margin-left: 0;
+    }
+    .grid-controls .btn.pull-right{
+        margin-top: 0.5em !important;
     }
     /* hide on small screen */
     .large-screen-only{

@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block title %}
-    Report
+Report
 {% endblock %}
 
 {% block main %}
@@ -24,19 +24,21 @@
                     <input type="text" placeholder="date to" title="date to"
                            class="form-control readonly datepicker" id="date_to">
                     <!--<span class="reset-icon">-->
-                      <!--<i class="fa fa-refresh"></i>-->
+                    <!--<i class="fa fa-refresh"></i>-->
                     <!--</span>-->
                 </div>
                 <div class="col-md-2">
                     <input type="submit" value="Filter" id="submit" class="btn btn-wide btn-primary">
                 </div>
             </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <input type="submit" value="Delete" id="delete" class="btn btn-inverse btn-wide btn-grid pull-right" disabled>
-                    <input type="submit" value="Edit" id="edit" class="btn btn-inverse btn-wide btn-grid pull-right" disabled>
-                </div>
-            </div>
+        </div>
+    </div>
+    <div class="row grid-controls">
+        <div class="col-md-1"></div>
+        <div class="col-md-10">
+            <input type="submit" value="Delete" id="delete" class="btn btn-inverse btn-wide btn-grid pull-right"
+                   disabled>
+            <input type="submit" value="Edit" id="edit" class="btn btn-inverse btn-wide btn-grid pull-right" disabled>
         </div>
     </div>
     {% include "mutaaba3ah/report_content.html" %}
