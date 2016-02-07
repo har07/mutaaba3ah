@@ -2,10 +2,11 @@ html, body{
     height: 100%;
 }
 
-iframe#coming-soon{
-    overflow:hidden;
-    height:100%;
-    width:100%
+body {
+  color: #2c3e50;
+  background-color: #ecf0f1;
+  font-size: 14px;
+  font-family: 'Roboto', sans-serif;
 }
 
 .hide{
@@ -19,31 +20,6 @@ iframe#coming-soon{
 
 .table{
     background: #ffffff;
-}
-
-.long-icon{
-    margin-bottom: 10px !important;
-}
-
-.div-filter{
-    margin: 10px;
-}
-
-.btn-filter{
-    margin-top: 0px !important;
-    font-size: 1.1em !important;
-}
-
-.btn-filter.pull-right{
-    margin-left: 15px;
-}
-
-.div-filter-box{
-    border-bottom: 2px solid #2c3e50;
-    padding-bottom: 1em;
-    margin-bottom: 1em;
-    border-top: 2px solid #2c3e50;
-    padding-top: 1em;
 }
 
 .table-title {
@@ -63,26 +39,50 @@ iframe#coming-soon{
 .number-col{
     padding-left: 1em;
 }
+#page-title h2 {
+  font-size: 20px;
+  font-weight: 700;
+  text-align: center;
+}
+
+.long-icon{
+    margin-bottom: 10px !important;
+}
+
+.div-filter{
+    margin: 10px;
+}
+
+.div-filter-box{
+    border-bottom: 2px solid #2c3e50;
+    padding-bottom: 1em;
+    margin-bottom: 1em;
+    border-top: 2px solid #2c3e50;
+    padding-top: 1em;
+}
+
+.div-filter-box .btn{
+    margin-left: 1em;
+}
+
+.div-filter-box input{
+    display: inline-block;
+}
+
+.create-icon{
+    text-align: center;
+    margin: 20px 0 0;
+}
 
 .delete-warning b{
     color: red !important;
     font-size: 120%;
 }
 
-/* flat-ui style dropdown menu
-ref F12 (inspect element) http://designmodo.github.io/Flat-UI/ */
-.dropdown-menu{
-    background-color: #f3f4f5;
-    border: medium none;
-    border-radius: 4px;
-    box-shadow: none;
-    font-size: 14px;
-    margin-top: 9px;
-    min-width: 220px;
-    padding: 0;
-    z-index: 1000;
+/* ngikutin setting bth-wide punya flat-UI*/
+.control-wide{
+    min-width: 140px;
 }
-/* end flat-ui style dropdown menu */
 
 /* CSS specific for mobile (small screens) */
 @media screen and (max-width: 480px) {
