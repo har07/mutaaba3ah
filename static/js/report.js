@@ -52,7 +52,7 @@ $(document).ready(function() {
 //         window.open(url);
 //     });
 
-    $("input.btn-filter")
+    $("#btn-filter")
         .button()
         .click(function( event ) {
             //on click, update HTML of report_content.html
