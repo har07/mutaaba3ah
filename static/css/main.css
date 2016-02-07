@@ -46,6 +46,24 @@ iframe#coming-soon{
     padding-top: 1em;
 }
 
+.table-title {
+  background: #16a085;
+  width: 100%;
+  display: block;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: #fff;
+  padding: 10px 15px;
+}
+
+.narrow-col{
+    width: 4em;
+}
+
+.number-col{
+    padding-left: 1em;
+}
+
 .delete-warning b{
     color: red !important;
     font-size: 120%;

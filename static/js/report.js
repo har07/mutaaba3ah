@@ -34,7 +34,6 @@ function toggleGridButtons(isEnable){
 }
 
 $(document).ready(function() {
-    //create selectable table
     $('.table.selectable > tbody > tr').click(function(e){
         //on row selected toggle row color
         //only one row can be selected at a time
@@ -46,10 +45,17 @@ $(document).ready(function() {
         toggleGridButtons(isEnable);
     });
 
-    //filter button
+//    $(".mutaaba3ah-date").css("cursor","pointer")
+//                         .tooltip()
+//                         .click(function(e){
+//         var url = $(".table.selectable > tbody > tr.success .view-url").text();
+//         window.open(url);
+//     });
+
     $("input.btn-filter")
         .button()
         .click(function( event ) {
+            //on click, update HTML of report_content.html
             event.preventDefault();
             updateReportData();
         });

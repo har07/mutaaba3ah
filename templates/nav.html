@@ -13,7 +13,17 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       {% if user.is_authenticated %}
       <ul class="nav navbar-nav">
-        <li class="active"><a href="{% url 'mutaaba3ah' %}">Mutaba'ah <span class="sr-only">(current)</span></a></li>
+        <li class="active dropdown">
+          <a href="{% url 'mutaaba3ah' %}" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+             aria-expanded="false">
+            Mutaba'ah
+            <span class="sr-only">(current)</span>
+            <span class="caret"></span>
+          </a>
+          <ul class="dropdown-menu">
+            <li><a href="{% url 'mutaaba3ah/report' %}">Report</a></li>
+          </ul>
+        </li>
       </ul>
       {% endif %}
       <ul class="nav navbar-nav navbar-right">
