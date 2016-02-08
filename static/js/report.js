@@ -3,6 +3,7 @@ function updateReportData(){
     var dateto = getDateStringFromCalendar($('#date_to'));
     var updateContent = function(data){
         $('#report_content').replaceWith(data);
+        setRowClickHandler();
     };
     var ajaxParams = {
         type: 'GET',
@@ -33,7 +34,7 @@ function toggleGridButtons(isEnable){
     });
 }
 
-$(document).ready(function() {
+function setRowClickHandler(){
     $('.table.selectable > tbody > tr').click(function(e){
         //on row selected toggle row color
         //only one row can be selected at a time
@@ -44,13 +45,10 @@ $(document).ready(function() {
         var isEnable = !$(this).hasClass("success");
         toggleGridButtons(isEnable);
     });
+}
 
-//    $(".mutaaba3ah-date").css("cursor","pointer")
-//                         .tooltip()
-//                         .click(function(e){
-//         var url = $(".table.selectable > tbody > tr.success .view-url").text();
-//         window.open(url);
-//     });
+$(document).ready(function() {
+    setRowClickHandler();
 
     $("#btn-filter")
         .button()
