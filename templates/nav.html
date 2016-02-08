@@ -9,11 +9,11 @@
         {% if user.is_authenticated %}
         <ul class="nav navbar-nav navbar-left">
             <li class="dropdown">
-                <a data-toggle="dropdown" class="dropdown-toggle" href="#">Mutaba'ah <b class="caret"></b></a>
+                <a id="menu-mutaaba3ah" data-toggle="dropdown" class="dropdown-toggle" href="#">Mutaba'ah <b class="caret"></b></a>
                 <span class="dropdown-arrow"></span>
                 <ul class="dropdown-menu">
-                    <li><a href="{% url 'mutaaba3ah' %}">Add Entry</a></li>
-                    <li><a href="{% url 'mutaaba3ah/report' %}">Report</a></li>
+                    <li><a id="menu-entry" href="{% url 'mutaaba3ah' %}">Add Entry</a></li>
+                    <li><a id="menu-report" href="{% url 'mutaaba3ah/report' %}">Report</a></li>
                 </ul>
             </li>
         </ul>
@@ -21,14 +21,14 @@
         <ul class="nav navbar-nav navbar-right">
             {% if user.is_authenticated %}
             <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                <a id="user-email" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                    aria-expanded="false">{{ user.email }} <span class="caret"></span></a>
                 <ul class="dropdown-menu">
-                    <li><a href="{% url 'logout' %}"><i class="fa fa-sign-out"></i> Logout</a></li>
+                    <li><a id="logout" href="{% url 'logout' %}"><i class="fa fa-sign-out"></i> Logout</a></li>
                 </ul>
             </li>
             {% else %}
-            <li><a href="{% url 'login' %}"><i class="fa fa-sign-in"></i> Login</a></li>
+            <li><a id="login" href="{% url 'login' %}"><i class="fa fa-sign-in"></i> Login</a></li>
             {% endif %}
         </ul>
         <ul class="nav navbar-nav navbar-right">
