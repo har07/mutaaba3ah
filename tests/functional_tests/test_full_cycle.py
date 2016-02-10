@@ -3,6 +3,9 @@ from selenium.common.exceptions import NoSuchElementException
 import unittest
 import datetime
 
+from . import helper
+
+
 class NewVisitorTest(unittest.TestCase):
     def setUp(self):
         self.browser = webdriver.Firefox()
@@ -17,34 +20,10 @@ class NewVisitorTest(unittest.TestCase):
 
     def tearDown(self):
         self.delete_data()
-        self.logout()
+        helper.logout(self)
         self.browser.quit()
 
     #region helper methods
-
-    def try_logout(self):
-        try:
-            self.logout()
-        except NoSuchElementException:
-            pass
-
-    def login(self):
-        login = self.browser.find_element_by_id("login")
-        self.assertIsNotNone(login)
-        login.click()
-        email = self.browser.find_element_by_id("email")
-        admin_login = self.browser.find_element_by_id("submit-login")
-        email.clear()
-        email.click()
-        email.send_keys('brian@tester.com')
-        admin_login.click()
-
-    def logout(self):
-        user_email = self.browser.find_element_by_id("user-email")
-        user_email.click()
-        logout = self.browser.find_element_by_id("logout")
-        self.assertIsNotNone(logout)
-        logout.click()
 
     def save_data(self):
         #click button submit on Edit or Entry form
@@ -132,14 +111,14 @@ class NewVisitorTest(unittest.TestCase):
         # Brian mendapat informasi dari grup WA ttg aplikasi mutaba'ah harian online
         # Dia mencoba mengakses halaman depan (home) aplikasi tersebut
         self.browser.get("http://localhost:8000")
-        self.try_logout()
+        helper.try_logout(self) 
 
         # Brian melihat tidak ada menu apa2 kecuali link untuk login
         self.assertEquals(len(self.browser.find_elements_by_id("user-email")), 0)
         self.assertEquals(len(self.browser.find_elements_by_id("logout")), 0)
         self.assertEquals(len(self.browser.find_elements_by_id("menu-entry")), 0)
         self.assertEquals(len(self.browser.find_elements_by_id("menu-report")), 0)
-        self.login()
+        helper.login(self)
 
         # Setelah login, Brian melihat ada menu ke halaman 'Entry' dan 'Report'
         self.assertEquals(len(self.browser.find_elements_by_id("menu-entry")), 1)
