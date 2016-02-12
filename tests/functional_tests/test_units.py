@@ -122,23 +122,19 @@ class FunctionalUnitsTest(helper.FunctionalTestBase):
 
         # prepare data for edit
         updated_data = self.data[0]
-        updated_data["dhuha"] = "6"
-        updated_data["ql"] = "10"
+        updated_data["dhuha"] = "600"
+        updated_data["ql"] = "10000"
 
         self.navigate_to_report()
         self.edit_item_by_date(updated_data)
 
         # refresh report page and verify updated data are displayed
         self.navigate_to_report()
-        report_item = self.find_report_items_by_date(updated_data)[0]
-        try:
-            dhuha = report_item.find_elements_by_xpath("td[normalize-space()='%s']" % updated_data["dhuha"])
-            ql = report_item.find_elements_by_xpath("td[normalize-space()='%s']" % updated_data["ql"])
-        except NoSuchElementException, e:
-            self.assertFalse(True, "updated data are not found: %s" % str(e))
-
-        # updated data are has been successfully displayed in searcher
-        self.assertTrue(True)
+        report_item = self.find_report_items_by_date(updated_data["date"])[0]
+        dhuha = report_item.find_elements_by_xpath("td[normalize-space()='%s']" % updated_data["dhuha"])
+        ql = report_item.find_elements_by_xpath("td[normalize-space()='%s']" % updated_data["ql"])
+        self.assertEqual(len(dhuha), 1)
+        self.assertEqual(len(ql), 1)
 
     def test_menu_visibility_after_login(self):
         self.login()
