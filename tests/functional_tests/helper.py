@@ -1,8 +1,18 @@
-from selenium.common.exceptions import NoSuchElementException
+from selenium.common.exceptions import NoSuchElementException, TimeoutException
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.common.keys import Keys
+
 import unittest
 
 
 class FunctionalTestBase(unittest.TestCase):
+    MUTAABA3AH_PAGE_LOCATOR = "//h2[.=\"Mutaba'ah Report\"]"
+    EDIT_OR_ENTRY_PAGE_LOCATOR = "//h2[.='Create a new entry' or .='Edit an existing entry']"
+    DELETE_PAGE_LOCATOR = "//h2[.='Delete an entry']"
+
+
     def __init__(self, *args, **kwargs):
         self.browser = None
         unittest.TestCase.__init__(self, *args, **kwargs)
@@ -40,7 +50,7 @@ class FunctionalTestBase(unittest.TestCase):
 
     #endregion
 
-    #region data manipulation
+    #region data operations
 
     def create_or_edit_data(self, data):
         # populate Entry or Edit form with test data
@@ -76,11 +86,12 @@ class FunctionalTestBase(unittest.TestCase):
 
         report_items = self.find_report_items_by_date(date)
         if report_items:
-            report_item = report_items[0]
+            item = report_items[0]
 
-            # click delete
-            report_item.click()
+            # click on row item if it hasn't been selected
             btn_delete = self.browser.find_element_by_id("delete")
+            if not btn_delete.is_enabled():
+                item.click()
             btn_delete.click()
 
             # pindah ke window konfirmasi & klik delete
@@ -93,24 +104,61 @@ class FunctionalTestBase(unittest.TestCase):
             self.browser.switch_to.window(self.browser.window_handles[0])
 
     def find_report_items_by_date(self, report_date=""):
-        # buka halaman report
-        # search data sesuai tanggal
+        # search data sesuai tanggal di halaman Mutaba'ah Report
         # format report_date : yyyy-mm-dd
 
+        self.validate_browser_property()
+        self.validate_at_report_page()
+
+        if report_date:
+            # container = self.browser.find_element_by_id("page-title")
+            date_from = self.browser.find_element_by_id("date_from")
+            date_from.click()
+            date_from.send_keys(report_date)
+            date_from.send_keys(Keys.TAB)
+            # container.click()
+
+            date_to = self.browser.find_element_by_id("date_to")
+            # date_to = WebDriverWait(self.browser, 10).until(EC.element_to_be_clickable((By.ID, "date_to")))
+            # date_to.click()
+            date_to.send_keys(report_date)
+            # container.click()
+
+        btn_filter = self.browser.find_element_by_id("btn-filter")
+        btn_filter.click()
+
+        # self.browser.implicitly_wait(10)
+
+        items = self.browser.find_elements_by_css_selector("#mutaaba3ah-table tbody tr")
+        # items = []
+        # try:
+        #     WebDriverWait(self.browser, 10).until(EC.element_to_be_clickable((By.CSS_SELECTOR, "#mutaaba3ah-table tbody tr")))
+        #     items = self.browser.find_elements_by_css_selector("#mutaaba3ah-table tbody tr")
+        # except TimeoutException:
+        #     pass
+        return items
+
+    #endregion
+
+    #region navigation
+
+    def navigate_to_report(self):
         menu_report = self.browser.find_element_by_id("menu-report")
         menu_mutaaba3ah = self.browser.find_element_by_id("menu-mutaaba3ah")
         menu_mutaaba3ah.click()
         menu_report.click()
-        if report_date:
-            date_from = self.browser.find_element_by_id("date_from")
-            date_from.click()
-            date_from.send_keys(report_date)
-            date_to = self.browser.find_element_by_id("date_to")
-            date_to.click()
-            date_to.send_keys(report_date)
-        btn_filter = self.browser.find_element_by_id("btn-filter")
-        btn_filter.click()
-        return self.browser.find_elements_by_css_selector("#mutaaba3ah-table tbody tr")
+
+        heading = WebDriverWait(self.browser, 10).until(
+             EC.presence_of_element_located((By.XPATH, self.MUTAABA3AH_PAGE_LOCATOR)))
+
+    def navigate_to_entry(self):
+        menu_entry = self.browser.find_element_by_id("menu-entry")
+        menu_mutaaba3ah = self.browser.find_element_by_id("menu-mutaaba3ah")
+        menu_mutaaba3ah.click()
+        menu_entry.click()
+
+        heading = WebDriverWait(self.browser, 10).until(
+             EC.presence_of_element_located((By.XPATH, self.EDIT_OR_ENTRY_PAGE_LOCATOR)))
 
     #endregion
 
@@ -122,17 +170,23 @@ class FunctionalTestBase(unittest.TestCase):
             raise RuntimeError(message)
 
     def validate_at_report_page(self):
-        message = "Current page is not Mutaba'ah Report: Make sure you have navigated to Mutaba'ah Report page before calling this method!"
-        page_title = self.browser.find_elements_by_xpath("//h2[.=\"Mutaba'ah Report\"]")
+        message = "Current page is not Mutaba'ah Report: call self.navigate_to_report() first"
+        page_title = self.browser.find_elements_by_xpath(self.MUTAABA3AH_PAGE_LOCATOR)
         if not page_title:
             raise RuntimeError(message)
 
     def validate_at_edit_or_entry_page(self):
         # Create a new entry
-        message = "Current page is neither Entry nor Edit page: Make sure you have navigated to Create " + \
-                  " or Edit Entry page before calling this method!"
-        page_title = self.browser.find_elements_by_xpath("//h2[.='Create a new entry' or .='Edit an existing entry']")
+        message = "Current page is neither Entry nor Edit page: Use self.navigate_to_entry() to go to entry page, or " \
+                  + "self.navigate_to_report() + self.find_report_items_by_date() to find item to be edited"
+        page_title = self.browser.find_elements_by_xpath(self.EDIT_OR_ENTRY_PAGE_LOCATOR)
         if not page_title:
             raise RuntimeError(message)
 
     #endregion
+
+    def wait_for_new_window(self, timeout=10):
+        handles_before = self.browser.window_handles
+        yield
+        WebDriverWait(self.browser, timeout).until(
+            lambda driver: len(handles_before) != len(driver.window_handles))

@@ -58,15 +58,13 @@ class NewVisitorTest(helper.FunctionalTestBase):
 
         # Brian membuka halaman 'Report' untuk memastikan tidak ada data apa2
         # karena ini adalah pertama kalinya ia mengakses aplikasi mutaba'ah ini
+        self.navigate_to_report()
         report_items = self.find_report_items_by_date()
         self.assertEquals(len(report_items), 0)
 
         # Brian kemudian membuka halaman 'Entry',
         # dan mengisikan data mutaba'ah untuk tgl hari ini
-        menu_mutaaba3ah = self.browser.find_element_by_id("menu-mutaaba3ah")
-        menu_mutaaba3ah.click()
-        menu_entry = self.browser.find_element_by_id("menu-entry")
-        menu_entry.click()
+        self.navigate_to_entry()
         self.create_or_edit_data(self.data)
 
         # Setelah disubmit, Brian melihat halaman konfirmasi menunjukkan data
@@ -76,6 +74,7 @@ class NewVisitorTest(helper.FunctionalTestBase):
 
         # Brian beralih ke halaman 'Report' utk memastikan data yg baru saja
         # disubmit, muncul di halaman 'Report'
+        self.navigate_to_report()
         report_items = self.find_report_items_by_date(self.data["date"])
         self.assertEquals(len(report_items), 1)
         report_item = report_items[0]
@@ -95,6 +94,8 @@ class NewVisitorTest(helper.FunctionalTestBase):
         self.assert_data_saved_correctly()
         self.browser.close()
         self.browser.switch_to.window(self.browser.window_handles[0])
+
+
 
 
 

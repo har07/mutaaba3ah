@@ -1,0 +1,109 @@
+from selenium import webdriver
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.common.by import By
+import unittest
+import datetime
+
+from . import helper
+
+class ReportTest(helper.FunctionalTestBase):
+
+
+    def setUp(self):
+        self.browser = webdriver.Firefox()
+
+        self.browser.get("http://localhost:8000")
+        self.try_logout()
+
+    def tearDown(self):
+        self.try_logout()
+        self.browser.quit()
+
+    def setup_data(self, insert_new):
+        self.data = [{
+            "dhuha": "4",
+            "tilawah_from": "1",
+            "tilawah_to": "20",
+            "ql": "5",
+            "shaum": "Iya",
+            "date": datetime.datetime.now().strftime("%Y-%m-%d")
+        },
+        {
+            "dhuha": "4",
+            "tilawah_from": "21",
+            "tilawah_to": "40",
+            "ql": "5",
+            "shaum": "Tidak",
+            "date": (datetime.datetime.now() + datetime.timedelta(days=1)).strftime("%Y-%m-%d")
+        }]
+
+        # insert initial test data if requested, and move to report page
+        if insert_new:
+            for item in self.data:
+                self.navigate_to_entry()
+                self.create_or_edit_data(item)
+        self.navigate_to_report()
+
+    def test_delete_items(self):
+        # go to report page
+        # search & delete all items one by one
+        # verify items count after deletion is less then initial count
+
+        self.login()
+        self.setup_data(True)
+
+        report_items = self.find_report_items_by_date()
+        while report_items:
+            self.delete_first_item(report_items)
+            self.navigate_to_report()
+            report_items = self.find_report_items_by_date()
+
+    def test_menu_visibility_after_login(self):
+        self.login()
+
+        self.assertEquals(len(self.browser.find_elements_by_id("menu-entry")), 1)
+        self.assertEquals(len(self.browser.find_elements_by_id("menu-report")), 1)
+
+    def test_menu_visibility_before_login(self):
+        self.try_logout()
+
+        self.assertEquals(len(self.browser.find_elements_by_id("user-email")), 0)
+        self.assertEquals(len(self.browser.find_elements_by_id("logout")), 0)
+        self.assertEquals(len(self.browser.find_elements_by_id("menu-entry")), 0)
+        self.assertEquals(len(self.browser.find_elements_by_id("menu-report")), 0)
+
+    def delete_first_item(self, report_items):
+        if report_items:
+            count_before_delete = len(report_items)
+            item = report_items[0]
+
+            # click on row item if it hasn't been selected
+            btn_delete = self.browser.find_element_by_id("delete")
+            if not btn_delete.is_enabled():
+                item.click()
+            btn_delete.click()
+
+            # pindah ke window konfirmasi & klik delete
+            WebDriverWait(self.browser, timeout=10).until(lambda x: len(x.window_handles) > 0)
+            self.browser.switch_to.window(self.browser.window_handles[1])
+
+            # add wait to handle intermittent 'unable to locate element' error
+            WebDriverWait(self.browser, timeout=50).until(
+                EC.presence_of_element_located((By.CSS_SELECTOR, "input[type='submit']")))
+            submit_delete = self.browser.find_element_by_css_selector("input[type='submit']")
+            submit_delete.click()
+
+            # close window konfirmasi & kembai ke halaman sebelumnya
+            self.browser.close()
+            self.browser.switch_to.window(self.browser.window_handles[0])
+
+            # refresh halaman report
+            self.navigate_to_report()
+
+            # search all items and count
+            report_items = self.find_report_items_by_date()
+            # self.browser.implicitly_wait(10)
+            count_after_delete = len(report_items)
+
+            self.assertLess(count_after_delete, count_before_delete)
