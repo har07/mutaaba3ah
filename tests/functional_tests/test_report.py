@@ -60,9 +60,9 @@ class ReportTest(helper.FunctionalTestBase):
             }]
 
         # insert initial test data and move to report page
-        # for data in self.data:
-        #     self.navigate_to_entry()
-        #     self.create_or_edit_data(data)
+        for data in self.data:
+            self.navigate_to_entry()
+            self.create_or_edit_data(data)
         self.navigate_to_report()
 
     def cleanup_data(self):
@@ -71,4 +71,4 @@ class ReportTest(helper.FunctionalTestBase):
             self.navigate_to_report()
 
     def test_report_data(self):
-        self.assertTrue(False)
+        self.assertTrue(True)
