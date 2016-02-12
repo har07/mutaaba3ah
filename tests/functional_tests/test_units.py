@@ -13,12 +13,14 @@ class FunctionalUnitsTest(helper.FunctionalTestBase):
 
     def setUp(self):
         self.browser = webdriver.Firefox()
+        self.is_need_cleanup = False
 
         self.browser.get("http://localhost:8000")
         self.try_logout()
 
     def tearDown(self):
-        self.cleanup_data()
+        if self.is_need_cleanup:
+            self.cleanup_data()
         self.try_logout()
         self.browser.quit()
 
@@ -72,13 +74,17 @@ class FunctionalUnitsTest(helper.FunctionalTestBase):
         self.navigate_to_report()
 
     def cleanup_data(self):
+        # delete all leftover data
+
         leftover_items = self.find_report_items_by_date()
         if not leftover_items:
             return
 
-        for data in self.data:
-            self.delete_item_by_date(data["date"])
+        leftover_items = self.find_report_items_by_date()
+        while leftover_items:
+            self.delete_first_item(leftover_items)
             self.navigate_to_report()
+            leftover_items = self.find_report_items_by_date()
 
     def test_delete_items(self):
         # go to report page
@@ -87,23 +93,23 @@ class FunctionalUnitsTest(helper.FunctionalTestBase):
 
         self.login()
         self.setup_data(True)
+        self.is_need_cleanup = True
 
         report_items = self.find_report_items_by_date()
         count_before_delete = len(report_items)
 
-        while report_items:
-            self.delete_first_item(report_items)
+        for data in self.data:
+            self.delete_item_by_date(data["date"])
             self.navigate_to_report()
-            report_items = self.find_report_items_by_date()
 
         # refresh report page
-        self.navigate_to_report()
+        # self.navigate_to_report()
 
         report_items = self.find_report_items_by_date()
         count_after_delete = len(report_items)
 
         self.assertLess(count_after_delete, count_before_delete)
-        self.assertEqual(count_after_delete, 0)
+        self.assertEqual(count_after_delete, count_before_delete - len(self.data))
 
     def test_edit_item(self):
         # go to report page
@@ -112,6 +118,7 @@ class FunctionalUnitsTest(helper.FunctionalTestBase):
 
         self.login()
         self.setup_data(True)
+        self.is_need_cleanup = True
 
         # prepare data for edit
         updated_data = self.data[0]
@@ -130,11 +137,8 @@ class FunctionalUnitsTest(helper.FunctionalTestBase):
         except NoSuchElementException, e:
             self.assertFalse(True, "updated data are not found: %s" % str(e))
 
+        # updated data are has been successfully displayed in searcher
         self.assertTrue(True)
-
-        # self.assert_data_saved_correctly()
-        # self.browser.close()
-        # self.browser.switch_to.window(self.browser.window_handles[0])
 
     def test_menu_visibility_after_login(self):
         self.login()
