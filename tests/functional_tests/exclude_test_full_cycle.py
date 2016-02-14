@@ -39,7 +39,7 @@ class NewVisitorTest(helper.FunctionalTestBase):
 
     #endregion
 
-    def test_login_entrydata_searchreport_logout(self):
+    def login_entrydata_searchreport_logout(self):
         # Brian mendapat informasi dari grup WA ttg aplikasi mutaba'ah harian online
         # Dia mencoba mengakses halaman depan (home) aplikasi tersebut
         self.browser.get("http://localhost:8000")

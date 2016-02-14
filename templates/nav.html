@@ -3,13 +3,15 @@
         <button data-target="#navbar-collapse-01" data-toggle="collapse" class="navbar-toggle" type="button">
             <span class="sr-only">Toggle navigation</span>
         </button>
-        <a class="navbar-brand" href="{% url 'home' %}">Abu Bakar Ash-Shiddiq</a>
+        <a class="navbar-brand" href="{% url 'home' %}">Mutaaba3ah</a>
     </div>
     <div id="navbar-collapse-01" class="collapse navbar-collapse">
         {% if user.is_authenticated %}
         <ul class="nav navbar-nav navbar-left">
             <li class="dropdown">
-                <a id="menu-mutaaba3ah" data-toggle="dropdown" class="dropdown-toggle" href="#">Mutaba'ah <b class="caret"></b></a>
+                <a id="menu-mutaaba3ah" data-toggle="dropdown" class="dropdown-toggle"
+                   title="Catatan Ibadah Harian"
+                   href="#">Mutaba'ah Yaumiyyah<b class="caret"></b></a>
                 <span class="dropdown-arrow"></span>
                 <ul class="dropdown-menu">
                     <li><a id="menu-entry" href="{% url 'mutaaba3ah' %}">Add Entry</a></li>

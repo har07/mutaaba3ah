@@ -97,18 +97,6 @@ def get_report_content(request, date_from=None, date_to=None):
 
 
 @login_required()
-def current_month_entries(request):
-    now = datetime.datetime.now()
-    current_month_year =now.strftime('%B %Y')
-
-    data = {
-        'entries': get_current_month_data(request.user, now),
-        'current_month_year': current_month_year,
-    }
-    return render(request, 'mutaaba3ah/index.html', data)
-
-
-@login_required()
 def delete_entry(request, id):
     """
     Renders a form to support the deletion of existing Entry objects.
@@ -128,3 +116,4 @@ def delete_entry(request, id):
 
     data = {'form': form, 'entry': entry}
     return render(request, 'mutaaba3ah/delete_entry.html', data)
+
