@@ -16,7 +16,7 @@ urlpatterns = patterns('',
     url(r'^$',  TemplateView.as_view(template_name="home.html"), name='home'),
     url(r'^login/$', 'scaffold.views.login', name='login'),
     url(r'^logout/$', 'scaffold.views.logout', name='logout'),
-    url(r'^daily', include('mutaaba3ah.urls')),
+    url(r'^daily/', include('mutaaba3ah.urls')),
     # url(r'^mutaaba3ah/', TemplateView.as_view(template_name="index.html"), name='mutaaba3ah'),
 
     url(r'^_ah/', include('djangae.urls')),
