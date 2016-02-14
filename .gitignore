@@ -9,6 +9,9 @@ obj/
 .vs/
 web*.config
 
+# pycharm generated
+.idea/
+
 # C extensions
 *.so
 
