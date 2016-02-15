@@ -32,6 +32,8 @@ class Entry(models.Model):
     raport = models.BooleanField(blank=True, default=False, choices=BOOL_CHOICES)
 
     def compute_tilawah(self):
+        if self.tilawah_start == 0 and self.tilawah_end == 0:
+            return 0
         if self.tilawah_end < self.tilawah_start:
             return (MAX_HAL_ALQURAN + 1 - self.tilawah_start) + self.tilawah_end
 

@@ -1,20 +1,23 @@
 from django.test import TestCase
 from django.core.urlresolvers import reverse
 from django.contrib.auth import get_user_model
-User = get_user_model()
+# User = get_user_model()
 
-from google.appengine.ext import testbed
+# from google.appengine.ext import testbed
+
+import datetime
+import mutaaba3ah.views as views
 
 
 class Mutaaba3ahViewsTest(TestCase):
 
     def setUp(self):
         """Initalise GAE test stubs before each test is run."""
-
-        self.testbed = testbed.Testbed()
-        self.testbed.activate()
+        #
+        # self.testbed = testbed.Testbed()
+        # self.testbed.activate()
         # self.test_user = User.objects.pre_create_google_user(email='brian@tester.com')
-        self.user_login()
+        # self.user_login()
 
     def tearDown(self):
         """Remove the GAE test subs after each test."""

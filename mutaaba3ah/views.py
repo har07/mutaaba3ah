@@ -7,16 +7,8 @@ import datetime
 
 from models import Entry
 from forms import EntryForm, DeleteEntryForm
+from helpers import get_date_from_string, get_current_month_data
 
-DATE_FORMAT = '%Y%m%d'
-
-def get_current_month_data(user, date):
-    now = date
-    last_day_prev_month = datetime.date(now.year,now.month,1)  - datetime.timedelta(days=1)
-    data = Entry.objects.filter(owner=user,
-                                entry_date__gt=last_day_prev_month,
-                                entry_date__lte=now.date())
-    return data
 
 @login_required()
 def add_or_edit_entry(request, id=None):
@@ -60,11 +52,6 @@ def report(request):
         'entries': get_current_month_data(request.user, now)
     }
     return render(request, 'mutaaba3ah/report.html', data)
-
-
-def get_date_from_string(datestring):
-    date_object = datetime.datetime.strptime(datestring, DATE_FORMAT)
-    return date_object
 
 
 @login_required()
