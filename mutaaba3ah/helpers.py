@@ -5,6 +5,7 @@ from models import Entry
 
 
 DATE_FORMAT = '%Y%m%d'
+DISPLAY_DATE_FORMAT = '%d %b %Y'
 
 def get_current_month_data(user, date):
     now = date
@@ -39,8 +40,10 @@ def group_entries_weekly(entries):
     for entry in entries:
         d[get_last_sunday(entry.entry_date)].append(entry)
 
-    result = {
-        k: {
+    result = [
+        {
+            'label': k.strftime(DISPLAY_DATE_FORMAT) + ' - ' + \
+                     (k + datetime.timedelta(days=6)).strftime(DISPLAY_DATE_FORMAT),
             'date_from': k,
             'date_to': k + datetime.timedelta(days=6),
             'tilawah': sum(entry.compute_tilawah() for entry in v),
@@ -50,6 +53,6 @@ def group_entries_weekly(entries):
             'raport': sum(1 for entry in v if entry.raport),
         }
         for (k,v) in d.iteritems()
-    }
+    ]
 
     return result

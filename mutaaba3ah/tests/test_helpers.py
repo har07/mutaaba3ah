@@ -33,9 +33,12 @@ class Mutaaba3ahHelpersTest(TestCase):
         data = []
 
         # data utk pekan pertama
+        start = datetime.date(2016,2,14)
+        end = datetime.date(2016,2,20)
         total_1 = {
-            'date_from': datetime.date(2016,2,14),
-            'date_to': datetime.date(2016,2,20),
+            'label': start.strftime(helpers.DISPLAY_DATE_FORMAT) + ' - ' + end.strftime(helpers.DISPLAY_DATE_FORMAT),
+            'date_from': start,
+            'date_to': end,
             'tilawah': 10,
             'ql': 0,
             'dhuha': 8,
@@ -43,12 +46,13 @@ class Mutaaba3ahHelpersTest(TestCase):
             'raport': 0,
         }
 
-        e = models.Entry()
-        e.entry_date = datetime.date(2016,2,15)
-        e.tilawah_start = 1
-        e.tilawah_end = 5
-        e.dhuha = 4
-        e.shaum = True
+        e = models.Entry(
+            entry_date = datetime.date(2016,2,15),
+            tilawah_start = 1,
+            tilawah_end = 5,
+            dhuha = 4,
+            shaum = True
+        )
         data.append(e)
 
         e = models.Entry()
@@ -66,9 +70,12 @@ class Mutaaba3ahHelpersTest(TestCase):
         data.append(e)
 
         # data utk pekan selanjutnya
+        start = datetime.date(2016,2,21)
+        end = datetime.date(2016,2,27)
         total_2 = {
-            'date_from': datetime.date(2016,2,21),
-            'date_to': datetime.date(2016,2,27),
+            'label': start.strftime(helpers.DISPLAY_DATE_FORMAT) + ' - ' + end.strftime(helpers.DISPLAY_DATE_FORMAT),
+            'date_from': start,
+            'date_to': end,
             'tilawah': 10,
             'ql': 0,
             'dhuha': 4,
@@ -85,5 +92,6 @@ class Mutaaba3ahHelpersTest(TestCase):
         data.append(e)
 
         result = helpers.group_entries_weekly(data)
-        self.assertDictEqual(result[total_1['date_from']], total_1)
-        self.assertDictEqual(result[total_2['date_from']], total_2)
+
+        self.assertDictEqual(result[0], total_1)
+        self.assertDictEqual(result[1], total_2)

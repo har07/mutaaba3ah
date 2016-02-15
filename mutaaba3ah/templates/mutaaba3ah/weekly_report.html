@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block title %}
+Weekly Report
+{% endblock %}
+
+{% block main %}
+<div id="page-title" class="container">
+    <div>
+        <canvas id="canvas" height="450" width="600"></canvas>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+{% load staticfiles %}
+<script src="{% static 'js/libs/Chart.min.js' %}"></script>
+<script src="{% static 'js/weekly_report.js' %}"></script>
+{% endblock %}

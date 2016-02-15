@@ -1,13 +1,15 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, get_object_or_404
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, JsonResponse
 from django.core.urlresolvers import reverse
 
 import datetime
 
 from models import Entry
 from forms import EntryForm, DeleteEntryForm
-from helpers import get_date_from_string, get_current_month_data
+from helpers import get_date_from_string, get_current_month_data, group_entries_weekly
+
+#region application page methods
 
 
 @login_required()
@@ -55,11 +57,42 @@ def report(request):
 
 
 @login_required()
+def delete_entry(request, id):
+    """
+    Renders a form to support the deletion of existing Entry objects.
+
+    Using a form allows us to protect against CSRF attacks.
+    """
+
+    entry = get_object_or_404(Entry, id=id)
+
+    if request.method == 'POST':
+        form = DeleteEntryForm(request.POST, instance=entry)
+        if form.is_valid():
+            entry.delete()
+            return HttpResponseRedirect(reverse('mutaaba3ah'))
+    else:
+        form = DeleteEntryForm(instance=entry)
+
+    data = {'form': form, 'entry': entry}
+    return render(request, 'mutaaba3ah/delete_entry.html', data)
+
+
+@login_required()
+def weekly_report(request):
+    data = {}
+    return render(request, 'mutaaba3ah/weekly_report.html', data)
+
+
+#endregion
+
+
+#region AJAX methods
+
+
+@login_required()
 def get_report_content(request, date_from=None, date_to=None):
     entries = []
-    # params = request.GET
-    # date_from = params.get('date_from')
-    # date_to = params.get('date_to')
     if date_from and date_to:
         date_from = get_date_from_string(date_from)
         date_to = get_date_from_string(date_to)
@@ -84,23 +117,19 @@ def get_report_content(request, date_from=None, date_to=None):
 
 
 @login_required()
-def delete_entry(request, id):
+def get_weekly_report_data(request):
     """
-    Renders a form to support the deletion of existing Entry objects.
-
-    Using a form allows us to protect against CSRF attacks.
+    Get current year entries grouped by week
+    return data as JSON
+    :param request:
+    :return:
     """
+    year_start = datetime.date(datetime.date.today().year,1,1)
+    entries = Entry.objects.filter(owner=request.user,
+                                        entry_date__gte=year_start)[:366]
+    grouped_entries = group_entries_weekly(entries)
+    return JsonResponse(grouped_entries, safe=False)
 
-    entry = get_object_or_404(Entry, id=id)
 
-    if request.method == 'POST':
-        form = DeleteEntryForm(request.POST, instance=entry)
-        if form.is_valid():
-            entry.delete()
-            return HttpResponseRedirect(reverse('mutaaba3ah'))
-    else:
-        form = DeleteEntryForm(instance=entry)
-
-    data = {'form': form, 'entry': entry}
-    return render(request, 'mutaaba3ah/delete_entry.html', data)
+#endregion
 
