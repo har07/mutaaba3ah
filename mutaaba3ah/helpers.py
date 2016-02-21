@@ -29,6 +29,15 @@ def get_last_sunday(date=datetime.datetime.today().date()):
         return date
     return date - datetime.timedelta(days=date.weekday()+1)
 
+def get_date_range_label(date_from, date_to):
+    if date_from.year == date_to.year and date_from.month == date_to.month \
+            and date_from.day == date_to.day:
+        return date_to.strftime(DISPLAY_DATE_FORMAT)
+    elif date_from.year == date_to.year and date_from.month == date_to.month:
+        return format(date_from.day, '02d') + ' - ' + (date_to.strftime(DISPLAY_DATE_FORMAT))
+
+    return (date_from.strftime(DISPLAY_DATE_FORMAT)) + ' - ' + (date_to.strftime(DISPLAY_DATE_FORMAT))
+
 def group_entries_weekly(entries):
     """
     Turn list of daily mutaba'ah entries
@@ -42,8 +51,7 @@ def group_entries_weekly(entries):
 
     result = [
         {
-            'label': k.strftime(DISPLAY_DATE_FORMAT) + ' - ' + \
-                     (k + datetime.timedelta(days=6)).strftime(DISPLAY_DATE_FORMAT),
+            'label': get_date_range_label(k, (k + datetime.timedelta(days=6))),
             'date_from': k,
             'date_to': k + datetime.timedelta(days=6),
             'tilawah': sum(entry.compute_tilawah() for entry in v),

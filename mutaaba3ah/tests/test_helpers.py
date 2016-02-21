@@ -36,7 +36,7 @@ class Mutaaba3ahHelpersTest(TestCase):
         start = datetime.date(2016,2,14)
         end = datetime.date(2016,2,20)
         total_1 = {
-            'label': start.strftime(helpers.DISPLAY_DATE_FORMAT) + ' - ' + end.strftime(helpers.DISPLAY_DATE_FORMAT),
+            'label': '14 - ' + end.strftime(helpers.DISPLAY_DATE_FORMAT),
             'date_from': start,
             'date_to': end,
             'tilawah': 10,
@@ -73,7 +73,7 @@ class Mutaaba3ahHelpersTest(TestCase):
         start = datetime.date(2016,2,21)
         end = datetime.date(2016,2,27)
         total_2 = {
-            'label': start.strftime(helpers.DISPLAY_DATE_FORMAT) + ' - ' + end.strftime(helpers.DISPLAY_DATE_FORMAT),
+            'label': '21 - ' + end.strftime(helpers.DISPLAY_DATE_FORMAT),
             'date_from': start,
             'date_to': end,
             'tilawah': 10,
