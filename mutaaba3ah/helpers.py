@@ -55,4 +55,5 @@ def group_entries_weekly(entries):
         for (k,v) in d.iteritems()
     ]
 
-    return result
+    sorted_result = sorted(result, key=lambda k: k['date_to'])
+    return sorted_result

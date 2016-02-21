@@ -82,6 +82,7 @@ def delete_entry(request, id):
 def weekly_report(request):
     data = {}
     return render(request, 'mutaaba3ah/weekly_report.html', data)
+    # return render(request, 'mutaaba3ah/line.html', data)
 
 
 #endregion

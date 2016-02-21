@@ -32,11 +32,15 @@ function updateChart(data){
         ]
     }
 
-    //update chart with prepared data
+    //update chart with data
     var ctx = document.getElementById("canvas").getContext("2d");
-    window.myLine = new Chart(ctx).Line(lineChartData, {
-        bezierCurve : false,
-        responsive: true
+    window.myLine = new Chart(ctx, {
+        type: 'line',
+        data: lineChartData,
+        options: {
+            tension: 0, //straight lines
+            responsive: true
+        }
     });
 }
 
@@ -79,14 +83,22 @@ function dummyChartData(){
 
     window.onload = function(){
         var ctx = document.getElementById("canvas").getContext("2d");
-        window.myLine = new Chart(ctx).Line(lineChartData, {
-            bezierCurve : false,
-            responsive: true
+//        window.myLine = new Chart(ctx).Line(lineChartData, {
+//            bezierCurve : false,
+//            responsive: true
+//        });
+        window.myLine = new Chart(ctx, {
+            type: 'line',
+            data: lineChartData,
+            options: {
+                bezierCurve : false,
+                responsive: true
+            }
         });
     }
 }
 
 $(document).ready(function() {
-//    updateReportData();
-    dummyChartData();
+    updateReportData();
+//    dummyChartData();
 });
