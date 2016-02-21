@@ -21,7 +21,8 @@ function updateChart(data){
         datasets : [
             {
                 label: "Jumlah halaman tilawah per pekan",
-                fillColor : "rgba(220,220,220,0.2)",
+//                fillColor : "rgba(220,220,220,0.2)",
+                fill: false,
                 strokeColor : "rgba(220,220,220,1)",
                 pointColor : "rgba(220,220,220,1)",
                 pointStrokeColor : "#fff",
@@ -44,14 +45,6 @@ function updateChart(data){
     });
 }
 
-function applyChartSettings(){
-    var ctx = document.getElementById("canvas").getContext("2d");
-    window.myLine = new Chart(ctx).Line(lineChartData, {
-        bezierCurve : false,
-        responsive: true
-    });
-}
-
 function dummyChartData(){
     var randomScalingFactor = function(){ return Math.round(Math.random()*100)};
     var lineChartData = {
@@ -59,7 +52,8 @@ function dummyChartData(){
         datasets : [
             {
                 label: "My First dataset",
-                fillColor : "rgba(220,220,220,0.2)",
+//                fillColor : "rgba(220,220,220,0.2)",
+                fill: false,
                 strokeColor : "rgba(220,220,220,1)",
                 pointColor : "rgba(220,220,220,1)",
                 pointStrokeColor : "#fff",
@@ -83,22 +77,20 @@ function dummyChartData(){
 
     window.onload = function(){
         var ctx = document.getElementById("canvas").getContext("2d");
-//        window.myLine = new Chart(ctx).Line(lineChartData, {
-//            bezierCurve : false,
-//            responsive: true
-//        });
         window.myLine = new Chart(ctx, {
             type: 'line',
-            data: lineChartData,
-            options: {
-                bezierCurve : false,
-                responsive: true
-            }
+            data: lineChartData
         });
     }
 }
 
+function setChartGlobalSettings(){
+    Chart.defaults.global.responsive = true;
+    Chart.defaults.global.elements.line.tension = 0;
+}
+
 $(document).ready(function() {
+    setChartGlobalSettings();
     updateReportData();
 //    dummyChartData();
 });
