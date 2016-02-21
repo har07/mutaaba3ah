@@ -11,12 +11,15 @@ from . import helper
 class FunctionalUnitsTest(helper.FunctionalTestBase):
 
 
+    #region UnitTest methods and helpers
+
     def setUp(self):
         self.browser = webdriver.Firefox()
         self.is_need_cleanup = False
 
         self.browser.get("http://localhost:8000")
         self.try_logout()
+        self.data = []
 
     def tearDown(self):
         if self.is_need_cleanup:
@@ -49,22 +52,22 @@ class FunctionalUnitsTest(helper.FunctionalTestBase):
             self.browser.switch_to.window(self.browser.window_handles[0])
 
     def setup_data(self, insert_new):
-        self.data = [{
+        self.data.append({
             "dhuha": "4",
             "tilawah_from": "1",
             "tilawah_to": "20",
             "ql": "5",
             "shaum": "Iya",
             "date": datetime.datetime.now().strftime("%Y-%m-%d")
-        },
-        {
+        })
+        self.data.append({
             "dhuha": "4",
             "tilawah_from": "21",
             "tilawah_to": "40",
             "ql": "5",
             "shaum": "Tidak",
             "date": (datetime.datetime.now() + datetime.timedelta(days=1)).strftime("%Y-%m-%d")
-        }]
+        })
 
         # insert initial test data if requested, and move to report page
         if insert_new:
@@ -85,6 +88,8 @@ class FunctionalUnitsTest(helper.FunctionalTestBase):
             self.delete_first_item(leftover_items)
             self.navigate_to_report()
             leftover_items = self.find_report_items_by_date()
+
+    #endregion
 
     def test_delete_items(self):
         # go to report page
@@ -149,6 +154,32 @@ class FunctionalUnitsTest(helper.FunctionalTestBase):
         self.assertEquals(len(self.browser.find_elements_by_id("logout")), 0)
         self.assertEquals(len(self.browser.find_elements_by_id("menu-entry")), 0)
         self.assertEquals(len(self.browser.find_elements_by_id("menu-report")), 0)
+
+    def test_searcher(self):
+        # go to report page
+        # search for entry which date equals test_date
+
+        test_date = "2100-02-01"
+        test_date_display = "01 Feb 2100"
+        self.data.append({
+            "dhuha": "4",
+            "tilawah_from": "1",
+            "tilawah_to": "20",
+            "ql": "5",
+            "shaum": "Iya",
+            "date": test_date
+        })
+
+        self.login()
+        self.setup_data(True)
+        self.is_need_cleanup = True
+
+        report_items = self.find_report_items_by_date(test_date)
+        date_column = report_items[0].find_element_by_css_selector(".mutaaba3ah-date")
+
+        self.assertEqual(len(report_items), 1)
+        self.assertEqual(date_column.text, test_date_display)
+
 
 
 

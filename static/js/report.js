@@ -4,14 +4,16 @@ function updateReportData(){
     var updateContent = function(data){
         $('#report_content').replaceWith(data);
         setRowClickHandler();
+        $('#loading-indicator').hide();
     };
     var ajaxParams = {
         type: 'GET',
-        url: '/mutaaba3ah/report/get_report_content/' + datefrom + '/' + dateto,
+        url: '/daily/report/get_report_content/' + datefrom + '/' + dateto,
         dataType: 'html',
         success: updateContent
     };
      $.ajax(ajaxParams);
+     $('#loading-indicator').show();
 }
 
 function toggleGridButtons(isEnable){

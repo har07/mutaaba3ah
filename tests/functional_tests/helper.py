@@ -59,6 +59,15 @@ class FunctionalTestBase(unittest.TestCase):
         self.validate_browser_property()
         self.validate_at_edit_or_entry_page()
 
+        if "date" in data and data["date"]:
+            datepicker = self.browser.find_element_by_id("id_entry_date")
+            datepicker.click()
+            datepicker.clear()
+            datepicker.send_keys(data["date"])
+
+        header = self.browser.find_element_by_css_selector("h2")
+        header.click()
+
         dhuha = self.browser.find_element_by_id("id_dhuha")
         dhuha.clear()
         dhuha.send_keys(data["dhuha"])
@@ -136,9 +145,13 @@ class FunctionalTestBase(unittest.TestCase):
             self.browser.close()
             self.browser.switch_to.window(self.browser.window_handles[0])
 
-    def find_report_items_by_date(self, report_date=""):
+    def find_report_items_by_date(self, report_date="", retry_count=0):
+        """
         # search data sesuai tanggal di halaman Mutaba'ah Report
         # format report_date : yyyy-mm-dd
+        :param report_date: date to be searched
+        :return:
+        """
 
         self.validate_browser_property()
         self.validate_at_report_page()
@@ -155,7 +168,17 @@ class FunctionalTestBase(unittest.TestCase):
         btn_filter = self.browser.find_element_by_id("btn-filter")
         btn_filter.click()
 
+        # wait until loading bar disappear
+        WebDriverWait(self.browser, timeout=50).until(
+            EC.invisibility_of_element_located((By.ID, "loading-indicator")))
         items = self.browser.find_elements_by_css_selector("#mutaaba3ah-table tbody tr")
+
+        # weird enough, sometimes btn_filter.click() doesn't trigger the click i.e no loading at all
+        # in case that happens, refresh page and retry search + delete item
+        if not items and retry_count == 0:
+            self.navigate_to_report()
+            items = self.find_report_items_by_date(report_date, 1)
+
         return items
 
     #endregion

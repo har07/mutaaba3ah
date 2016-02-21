@@ -10,7 +10,7 @@ class EntryForm(forms.ModelForm):
             'entry_date': forms.DateInput(attrs={
                 'placeholder': 'Tanggal',
                 'class': 'form-control datepicker',
-                'readonly': 'readonly',
+                # 'readonly': 'readonly',
                 'title': 'Tanggal',
             }),
             'tilawah_start': forms.NumberInput(attrs={
