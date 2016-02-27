@@ -17,6 +17,7 @@ function updateChart(data){
     displayDhuha(data);
     displayQl(data);
     displayShaum(data);
+    displayRaport(data);
 }
 
 function dummyChartData(){
@@ -191,6 +192,39 @@ function displayShaum(data){
 
     //update chart with data
     var ctx = document.getElementById("shaumChart").getContext("2d");
+    window.myLine = new Chart(ctx, {
+        type: 'line',
+        data: lineChartData,
+        options: {
+            tension: 0, //straight lines
+            responsive: true
+        }
+    });
+}
+
+function displayRaport(data){
+    //prepare chart data
+    var labels = $.map(data, function(e){ return e.label; })
+    var raport = $.map(data, function(e){ return e.raport; })
+    var lineChartData = {
+        labels : labels,
+        datasets : [
+            {
+                label: "Jumlah raport bersih per pekan",
+//                fillColor : "rgba(220,220,220,0.2)",
+                fill: false,
+                strokeColor : "rgba(220,220,220,1)",
+                pointColor : "rgba(220,220,220,1)",
+                pointStrokeColor : "#fff",
+                pointHighlightFill : "#fff",
+                pointHighlightStroke : "rgba(220,220,220,1)",
+                data : raport
+            }
+        ]
+    }
+
+    //update chart with data
+    var ctx = document.getElementById("raportChart").getContext("2d");
     window.myLine = new Chart(ctx, {
         type: 'line',
         data: lineChartData,

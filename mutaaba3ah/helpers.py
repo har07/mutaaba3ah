@@ -58,7 +58,7 @@ def group_entries_weekly(entries):
             'ql': sum(entry.ql for entry in v),
             'dhuha': sum(entry.dhuha for entry in v),
             'shaum': sum(1 for entry in v if entry.shaum),
-            'raport': sum(1 for entry in v if entry.raport),
+            'raport': 7-sum(1 for entry in v if entry.raport),
         }
         for (k,v) in d.iteritems()
     ]
