@@ -6,9 +6,67 @@ Weekly Report
 
 {% block main %}
 <div id="page-title" class="container">
-    <div>
-        <canvas id="canvas" height="450" width="600"></canvas>
+    <div class="row">
+        <span class="col-md-12 col-xs-12 create-icon long-icon">
+          <i class="fa fa-line-chart fa-4x"></i>
+        </span>
+        <h2>Mutaba'ah Weekly Report</h2>
     </div>
+    <div class="row">
+        <div class="col-md-6">
+              <!-- TILAWAH -->
+              <div class="box box-primary">
+                <div class="box-header with-border">
+                  <h3 class="box-title">Tilawah</h3>
+                </div>
+                <div class="box-body">
+                  <div class="chart">
+                    <canvas id="tilawahChart" style="height:250px"></canvas>
+                  </div>
+                </div><!-- /.box-body -->
+              </div><!-- /.box -->
+
+              <!-- QL -->
+              <div class="box box-primary">
+                <div class="box-header with-border">
+                  <h3 class="box-title">Qiyamul Lail</h3>
+                </div>
+                <div class="box-body">
+                    <canvas id="qlChart" style="height:250px"></canvas>
+                </div><!-- /.box-body -->
+              </div><!-- /.box -->
+
+            </div><!-- /.col (LEFT) -->
+            <div class="col-md-6">
+              <!-- LINE CHART -->
+              <div class="box box-primary">
+                <div class="box-header with-border">
+                  <h3 class="box-title">Dhuha</h3>
+                </div>
+                <div class="box-body">
+                  <div class="chart">
+                    <canvas id="dhuhaChart" style="height:250px"></canvas>
+                  </div>
+                </div><!-- /.box-body -->
+              </div><!-- /.box -->
+
+              <!-- Shaum -->
+              <div class="box box-primary">
+                <div class="box-header with-border">
+                  <h3 class="box-title">Shaum</h3>
+                </div>
+                <div class="box-body">
+                  <div class="chart">
+                    <canvas id="shaumChart" style="height:230px"></canvas>
+                  </div>
+                </div><!-- /.box-body -->
+              </div><!-- /.box -->
+
+            </div><!-- /.col (RIGHT) -->
+    </div>
+    <!--<div class="row">-->
+        <!--<canvas id="canvas" height="450" width="600"></canvas>-->
+    <!--</div>-->
 </div>
 {% endblock %}
 
@@ -16,4 +74,5 @@ Weekly Report
 {% load staticfiles %}
 <script src="{% static 'js/libs/Chart.min.js' %}"></script>
 <script src="{% static 'js/weekly_report.js' %}"></script>
+<link rel="stylesheet" href="{% static 'css/libs/AdminLTE/AdminLTE.min.css' %}" />
 {% endblock %}

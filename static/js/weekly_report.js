@@ -13,36 +13,10 @@ function updateReportData(){
 }
 
 function updateChart(data){
-    //prepare chart data
-    var labels = $.map(data, function(e){ return e.label; })
-    var tilawah_data = $.map(data, function(e){ return e.tilawah; })
-    var lineChartData = {
-        labels : labels,
-        datasets : [
-            {
-                label: "Jumlah halaman tilawah per pekan",
-//                fillColor : "rgba(220,220,220,0.2)",
-                fill: false,
-                strokeColor : "rgba(220,220,220,1)",
-                pointColor : "rgba(220,220,220,1)",
-                pointStrokeColor : "#fff",
-                pointHighlightFill : "#fff",
-                pointHighlightStroke : "rgba(220,220,220,1)",
-                data : tilawah_data
-            }
-        ]
-    }
-
-    //update chart with data
-    var ctx = document.getElementById("canvas").getContext("2d");
-    window.myLine = new Chart(ctx, {
-        type: 'line',
-        data: lineChartData,
-        options: {
-            tension: 0, //straight lines
-            responsive: true
-        }
-    });
+    displayTilawah(data);
+    displayDhuha(data);
+    displayQl(data);
+    displayShaum(data);
 }
 
 function dummyChartData(){
@@ -76,7 +50,7 @@ function dummyChartData(){
     }
 
     window.onload = function(){
-        var ctx = document.getElementById("canvas").getContext("2d");
+        var ctx = document.getElementById("tilawahChart").getContext("2d");
         window.myLine = new Chart(ctx, {
             type: 'line',
             data: lineChartData
@@ -94,3 +68,135 @@ $(document).ready(function() {
     updateReportData();
 //    dummyChartData();
 });
+
+function displayTilawah(data){
+    //prepare chart data
+    var labels = $.map(data, function(e){ return e.label; })
+    var tilawah_data = $.map(data, function(e){ return e.tilawah; })
+    var lineChartData = {
+        labels : labels,
+        datasets : [
+            {
+                label: "Jumlah halaman tilawah per pekan",
+//                fillColor : "rgba(220,220,220,0.2)",
+                fill: false,
+                strokeColor : "rgba(220,220,220,1)",
+                pointColor : "rgba(220,220,220,1)",
+                pointStrokeColor : "#fff",
+                pointHighlightFill : "#fff",
+                pointHighlightStroke : "rgba(220,220,220,1)",
+                data : tilawah_data
+            }
+        ]
+    }
+
+    //update chart with data
+    var ctx = document.getElementById("tilawahChart").getContext("2d");
+    window.myLine = new Chart(ctx, {
+        type: 'line',
+        data: lineChartData,
+        options: {
+            tension: 0, //straight lines
+            responsive: true
+        }
+    });
+}
+
+function displayDhuha(data){
+    //prepare chart data
+    var labels = $.map(data, function(e){ return e.label; })
+    var dhuha = $.map(data, function(e){ return e.dhuha; })
+    var lineChartData = {
+        labels : labels,
+        datasets : [
+            {
+                label: "Jumlah raka'at dhuha per pekan",
+//                fillColor : "rgba(220,220,220,0.2)",
+                fill: false,
+                strokeColor : "rgba(220,220,220,1)",
+                pointColor : "rgba(220,220,220,1)",
+                pointStrokeColor : "#fff",
+                pointHighlightFill : "#fff",
+                pointHighlightStroke : "rgba(220,220,220,1)",
+                data : dhuha
+            }
+        ]
+    }
+
+    //update chart with data
+    var ctx = document.getElementById("dhuhaChart").getContext("2d");
+    window.myLine = new Chart(ctx, {
+        type: 'line',
+        data: lineChartData,
+        options: {
+            tension: 0, //straight lines
+            responsive: true
+        }
+    });
+}
+
+function displayQl(data){
+    //prepare chart data
+    var labels = $.map(data, function(e){ return e.label; })
+    var ql = $.map(data, function(e){ return e.ql; })
+    var lineChartData = {
+        labels : labels,
+        datasets : [
+            {
+                label: "Jumlah raka'at qiyamul lail per pekan",
+//                fillColor : "rgba(220,220,220,0.2)",
+                fill: false,
+                strokeColor : "rgba(220,220,220,1)",
+                pointColor : "rgba(220,220,220,1)",
+                pointStrokeColor : "#fff",
+                pointHighlightFill : "#fff",
+                pointHighlightStroke : "rgba(220,220,220,1)",
+                data : ql
+            }
+        ]
+    }
+
+    //update chart with data
+    var ctx = document.getElementById("qlChart").getContext("2d");
+    window.myLine = new Chart(ctx, {
+        type: 'line',
+        data: lineChartData,
+        options: {
+            tension: 0, //straight lines
+            responsive: true
+        }
+    });
+}
+
+function displayShaum(data){
+    //prepare chart data
+    var labels = $.map(data, function(e){ return e.label; })
+    var shaum = $.map(data, function(e){ return e.shaum; })
+    var lineChartData = {
+        labels : labels,
+        datasets : [
+            {
+                label: "Jumlah hari shaum per pekan",
+//                fillColor : "rgba(220,220,220,0.2)",
+                fill: false,
+                strokeColor : "rgba(220,220,220,1)",
+                pointColor : "rgba(220,220,220,1)",
+                pointStrokeColor : "#fff",
+                pointHighlightFill : "#fff",
+                pointHighlightStroke : "rgba(220,220,220,1)",
+                data : shaum
+            }
+        ]
+    }
+
+    //update chart with data
+    var ctx = document.getElementById("shaumChart").getContext("2d");
+    window.myLine = new Chart(ctx, {
+        type: 'line',
+        data: lineChartData,
+        options: {
+            tension: 0, //straight lines
+            responsive: true
+        }
+    });
+}
