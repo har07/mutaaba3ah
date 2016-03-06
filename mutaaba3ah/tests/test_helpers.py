@@ -102,7 +102,7 @@ class Mutaaba3ahHelpersTest(TestCase):
         # data utk hari pertama
         date = datetime.date(2016,2,14)
         formatted_1 = {
-            'label': date.strftime(helpers.DISPLAY_DATE_FORMAT),
+            'label': date.strftime(helpers.DISPLAY_DATE_NO_YEAR),
             'date': date,
             'tilawah': 10,
             'ql': 0,
@@ -143,7 +143,7 @@ class Mutaaba3ahHelpersTest(TestCase):
         # data utk hari ketiga
         date = datetime.date(2016,3,1)
         formatted_3 = {
-            'label': date.strftime(helpers.DISPLAY_DATE_FORMAT),
+            'label': date.strftime(helpers.DISPLAY_DATE_NO_YEAR),
             'date': date,
             'tilawah': 10,
             'ql': 0,

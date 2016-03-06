@@ -6,6 +6,7 @@ from models import Entry
 
 DATE_FORMAT = '%Y%m%d'
 DISPLAY_DATE_FORMAT = '%d %b %Y'
+DISPLAY_DATE_NO_YEAR = '%d %b'
 
 def get_current_month_data(user, date):
     now = date
@@ -78,7 +79,7 @@ def format_daily_entries(entries):
     result = [
         {
             # display full date label for 1st date of a month
-            'label': e.entry_date.strftime(DISPLAY_DATE_FORMAT) \
+            'label': e.entry_date.strftime(DISPLAY_DATE_NO_YEAR) \
                         if e.entry_date.day == 1 \
                      else e.entry_date.day,
             'date': e.entry_date,
@@ -93,6 +94,6 @@ def format_daily_entries(entries):
 
     # display full date label for the 1st entry
     if result:
-        result[0]['label'] = result[0]['date'].strftime(DISPLAY_DATE_FORMAT)
+        result[0]['label'] = result[0]['date'].strftime(DISPLAY_DATE_NO_YEAR)
 
     return result
