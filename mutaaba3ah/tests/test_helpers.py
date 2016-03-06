@@ -96,4 +96,72 @@ class Mutaaba3ahHelpersTest(TestCase):
         self.assertDictEqual(result[0], total_1)
         self.assertDictEqual(result[1], total_2)
 
+    def test_format_daily_entries(self):
+        data = []
 
+        # data utk hari pertama
+        date = datetime.date(2016,2,14)
+        formatted_1 = {
+            'label': date.strftime(helpers.DISPLAY_DATE_FORMAT),
+            'date': date,
+            'tilawah': 10,
+            'ql': 0,
+            'dhuha': 4,
+            'shaum': 1,
+            'raport': 1,
+        }
+        e = models.Entry(
+            entry_date = datetime.date(2016,2,14),
+            tilawah_start = 1,
+            tilawah_end = 10,
+            dhuha = 4,
+            shaum = True
+        )
+        data.append(e)
+
+        # data utk hari kedua
+        date = datetime.date(2016,2,15)
+        formatted_2 = {
+            'label': 15,
+            'date': date,
+            'tilawah': 5,
+            'ql': 5,
+            'dhuha': 4,
+            'shaum': 0,
+            'raport': 0,
+        }
+        e = models.Entry(
+            entry_date = datetime.date(2016,2,15),
+            tilawah_start = 11,
+            tilawah_end = 15,
+            ql = 5,
+            dhuha = 4,
+            raport = True
+        )
+        data.append(e)
+
+        # data utk hari ketiga
+        date = datetime.date(2016,3,1)
+        formatted_3 = {
+            'label': date.strftime(helpers.DISPLAY_DATE_FORMAT),
+            'date': date,
+            'tilawah': 10,
+            'ql': 0,
+            'dhuha': 4,
+            'shaum': 1,
+            'raport': 1,
+        }
+        e = models.Entry(
+            entry_date = datetime.date(2016,3,1),
+            tilawah_start = 1,
+            tilawah_end = 10,
+            dhuha = 4,
+            shaum = True
+        )
+        data.append(e)
+
+        result = helpers.format_daily_entries(data)
+
+        self.assertDictEqual(result[0], formatted_1)
+        self.assertDictEqual(result[1], formatted_2)
+        self.assertDictEqual(result[2], formatted_3)
