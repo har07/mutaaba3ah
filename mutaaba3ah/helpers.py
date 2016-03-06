@@ -33,11 +33,11 @@ def get_last_sunday(date=datetime.datetime.today().date()):
 def get_date_range_label(date_from, date_to):
     if date_from.year == date_to.year and date_from.month == date_to.month \
             and date_from.day == date_to.day:
-        return date_to.strftime(DISPLAY_DATE_FORMAT)
+        return date_to.strftime(DISPLAY_DATE_NO_YEAR)
     elif date_from.year == date_to.year and date_from.month == date_to.month:
-        return format(date_from.day, '02d') + ' - ' + (date_to.strftime(DISPLAY_DATE_FORMAT))
+        return format(date_from.day, '02d') + ' - ' + (date_to.strftime(DISPLAY_DATE_NO_YEAR))
 
-    return (date_from.strftime(DISPLAY_DATE_FORMAT)) + ' - ' + (date_to.strftime(DISPLAY_DATE_FORMAT))
+    return (date_from.strftime(DISPLAY_DATE_NO_YEAR)) + ' - ' + (date_to.strftime(DISPLAY_DATE_NO_YEAR))
 
 def group_entries_weekly(entries):
     """

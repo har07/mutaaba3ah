@@ -36,14 +36,14 @@ class Mutaaba3ahHelpersTest(TestCase):
         start = datetime.date(2016,2,14)
         end = datetime.date(2016,2,20)
         total_1 = {
-            'label': '14 - ' + end.strftime(helpers.DISPLAY_DATE_FORMAT),
+            'label': '14 - ' + end.strftime(helpers.DISPLAY_DATE_NO_YEAR),
             'date_from': start,
             'date_to': end,
             'tilawah': 10,
             'ql': 0,
             'dhuha': 8,
             'shaum': 1,
-            'raport': 0,
+            'raport': 7,
         }
 
         e = models.Entry(
@@ -73,14 +73,14 @@ class Mutaaba3ahHelpersTest(TestCase):
         start = datetime.date(2016,2,21)
         end = datetime.date(2016,2,27)
         total_2 = {
-            'label': '21 - ' + end.strftime(helpers.DISPLAY_DATE_FORMAT),
+            'label': '21 - ' + end.strftime(helpers.DISPLAY_DATE_NO_YEAR),
             'date_from': start,
             'date_to': end,
             'tilawah': 10,
             'ql': 0,
             'dhuha': 4,
             'shaum': 0,
-            'raport': 1,
+            'raport': 6,
         }
 
         e = models.Entry()
