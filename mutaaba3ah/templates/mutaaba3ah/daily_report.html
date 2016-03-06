@@ -2,7 +2,7 @@
 {% load staticfiles %}
 
 {% block title %}
-Weekly Report
+Daily Report
 {% endblock %}
 
 {% block main %}
@@ -11,7 +11,7 @@ Weekly Report
         <span class="col-md-12 col-xs-12 create-icon long-icon">
           <i class="fa fa-line-chart fa-4x"></i>
         </span>
-        <h2>Mutaba'ah Weekly Report</h2>
+        <h2>Mutaba'ah Daily Report</h2>
     </div>
     <div class="row">
         <div class="col-md-6">
@@ -90,5 +90,5 @@ Weekly Report
 {% block scripts %}
 <link rel="stylesheet" href="{% static 'css/libs/AdminLTE/AdminLTE.min.css' %}" />
 <script src="{% static 'js/libs/Chart.min.js' %}"></script>
-<script src="{% static 'js/weekly_report.js' %}"></script>
+<script src="{% static 'js/daily_report.js' %}"></script>
 {% endblock %}

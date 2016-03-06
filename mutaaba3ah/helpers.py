@@ -65,3 +65,34 @@ def group_entries_weekly(entries):
 
     sorted_result = sorted(result, key=lambda k: k['date_to'])
     return sorted_result
+
+
+def format_daily_entries(entries):
+    """
+    Turn plain list of daily mutaba'ah entries
+    into dictionary ready for display in chart
+    :param entries:
+    :return:
+    """
+
+    result = [
+        {
+            # display full date label for 1st date of a month
+            'label': e.entry_date.strftime(DISPLAY_DATE_FORMAT) \
+                        if e.entry_date.day == 1 \
+                     else e.entry_date.day,
+            'date': e.entry_date,
+            'tilawah': e.compute_tilawah(),
+            'ql': e.ql,
+            'dhuha': e.dhuha,
+            'shaum': 1 if e.shaum else 0,
+            'raport': 1 if not e.raport else 0,
+        }
+        for e in entries
+    ]
+
+    # display full date label for the 1st entry
+    if result:
+        result[0]['label'] = result[0]['date'].strftime(DISPLAY_DATE_FORMAT)
+
+    return result

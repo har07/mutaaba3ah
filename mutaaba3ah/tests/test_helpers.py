@@ -95,3 +95,5 @@ class Mutaaba3ahHelpersTest(TestCase):
 
         self.assertDictEqual(result[0], total_1)
         self.assertDictEqual(result[1], total_2)
+
+

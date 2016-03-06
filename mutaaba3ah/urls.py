@@ -11,4 +11,6 @@ urlpatterns = patterns(
     url(r'^report/get_report_content/(?P<date_from>\d*)/(?P<date_to>\d*)$', 'get_report_content', name='mutaaba3ah/get_report_content'),
     url(r'^weekly_report/$', 'weekly_report', name='mutaaba3ah/weekly'),
     url(r'^weekly_report/data$', 'get_weekly_report_data', name='mutaaba3ah/weekly_data'),
+    url(r'^daily_report/$', 'daily_report', name='mutaaba3ah/daily'),
+    url(r'^daily_report/data$', 'get_daily_report_data', name='mutaaba3ah/daily_data'),
 )

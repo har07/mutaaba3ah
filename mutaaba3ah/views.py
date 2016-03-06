@@ -7,7 +7,8 @@ import datetime
 
 from models import Entry
 from forms import EntryForm, DeleteEntryForm
-from helpers import get_date_from_string, get_current_month_data, group_entries_weekly
+from helpers import get_date_from_string, get_current_month_data, \
+    group_entries_weekly, format_daily_entries
 
 #region application page methods
 
@@ -85,6 +86,12 @@ def weekly_report(request):
     # return render(request, 'mutaaba3ah/line.html', data)
 
 
+@login_required()
+def daily_report(request):
+    data = {}
+    return render(request, 'mutaaba3ah/daily_report.html', data)
+
+
 #endregion
 
 
@@ -130,6 +137,14 @@ def get_weekly_report_data(request):
                                         entry_date__gte=year_start)[:366]
     grouped_entries = group_entries_weekly(entries)
     return JsonResponse(grouped_entries, safe=False)
+
+
+@login_required()
+def get_daily_report_data(request):
+    year_start = datetime.date(datetime.date.today().year,1,1)
+    entries = Entry.objects.filter(owner=request.user,
+                                        entry_date__gte=year_start)[:366]
+    return JsonResponse(format_daily_entries(entries), safe=False)
 
 
 #endregion
