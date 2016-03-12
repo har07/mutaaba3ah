@@ -64,7 +64,7 @@ function setChartGlobalSettings(){
     Chart.defaults.global.elements.line.tension = 0;
 }
 
-function getChartOptions(){
+function getChartOptions(suggestedMax){
     return {
         tension: 0, //straight lines
         responsive: true,
@@ -73,6 +73,7 @@ function getChartOptions(){
                 display: true,
                 ticks: {
                     suggestedMin: 0    // minimum will be 0, unless there is a lower value.
+                    ,suggestedMax: suggestedMax
                 }
             }]
         }
@@ -111,7 +112,7 @@ function displayTilawah(data){
     window.myLine = new Chart(ctx, {
         type: 'line',
         data: lineChartData,
-        options: getChartOptions()
+        options: getChartOptions(604)
     });
 }
 
@@ -141,7 +142,7 @@ function displayDhuha(data){
     window.myLine = new Chart(ctx, {
         type: 'line',
         data: lineChartData,
-        options: getChartOptions()
+        options: getChartOptions(56)
     });
 }
 
@@ -171,7 +172,7 @@ function displayQl(data){
     window.myLine = new Chart(ctx, {
         type: 'line',
         data: lineChartData,
-        options: getChartOptions()
+        options: getChartOptions(70)
     });
 }
 
@@ -201,7 +202,7 @@ function displayShaum(data){
     window.myLine = new Chart(ctx, {
         type: 'line',
         data: lineChartData,
-        options: getChartOptions()
+        options: getChartOptions(7)
     });
 }
 
@@ -231,6 +232,6 @@ function displayRaport(data){
     window.myLine = new Chart(ctx, {
         type: 'line',
         data: lineChartData,
-        options: getChartOptions()
+        options: getChartOptions(7)
     });
 }
