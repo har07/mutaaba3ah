@@ -72,7 +72,7 @@ function displayTilawah(data){
     window.myLine = new Chart(ctx, {
         type: 'line',
         data: lineChartData,
-        options: getChartOptions(60)
+        options: getChartOptions(40)
     });
 }
 
@@ -102,7 +102,7 @@ function displayDhuha(data){
     window.myLine = new Chart(ctx, {
         type: 'line',
         data: lineChartData,
-        options: getChartOptions(8)
+        options: getChartOptions(6)
     });
 }
 
@@ -132,7 +132,7 @@ function displayQl(data){
     window.myLine = new Chart(ctx, {
         type: 'line',
         data: lineChartData,
-        options: getChartOptions(11)
+        options: getChartOptions(5)
     });
 }
 

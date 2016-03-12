@@ -112,7 +112,7 @@ function displayTilawah(data){
     window.myLine = new Chart(ctx, {
         type: 'line',
         data: lineChartData,
-        options: getChartOptions(604)
+        options: getChartOptions(200)
     });
 }
 
@@ -142,7 +142,7 @@ function displayDhuha(data){
     window.myLine = new Chart(ctx, {
         type: 'line',
         data: lineChartData,
-        options: getChartOptions(56)
+        options: getChartOptions(28)
     });
 }
 
@@ -172,7 +172,7 @@ function displayQl(data){
     window.myLine = new Chart(ctx, {
         type: 'line',
         data: lineChartData,
-        options: getChartOptions(70)
+        options: getChartOptions(21)
     });
 }
 
@@ -202,7 +202,7 @@ function displayShaum(data){
     window.myLine = new Chart(ctx, {
         type: 'line',
         data: lineChartData,
-        options: getChartOptions(7)
+        options: getChartOptions(3)
     });
 }
 
